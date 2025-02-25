@@ -1,4 +1,4 @@
-package com.lucascosta.gymtracker.ui.dashboard
+package com.lucascosta.gymtracker.ui.exercises
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,14 +7,12 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.lucascosta.gymtracker.databinding.FragmentDashboardBinding
+import com.lucascosta.gymtracker.databinding.FragmentExercisesBinding
 
-class DashboardFragment : Fragment() {
+class ExercisesFragment : Fragment() {
 
-    private var _binding: FragmentDashboardBinding? = null
+    private var _binding: FragmentExercisesBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -22,14 +20,14 @@ class DashboardFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val dashboardViewModel =
-            ViewModelProvider(this).get(DashboardViewModel::class.java)
+        val exercisesViewModel =
+            ViewModelProvider(this)[ExercisesViewModel::class.java]
 
-        _binding = FragmentDashboardBinding.inflate(inflater, container, false)
+        _binding = FragmentExercisesBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textDashboard
-        dashboardViewModel.text.observe(viewLifecycleOwner) {
+        val textView: TextView = binding.textExercises
+        exercisesViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
         return root
