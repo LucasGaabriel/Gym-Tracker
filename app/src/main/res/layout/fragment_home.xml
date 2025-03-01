@@ -8,21 +8,6 @@
     tools:layout_editor_absoluteX="35dp"
     tools:layout_editor_absoluteY="8dp">
 
-    <TextView
-        android:id="@+id/text_home"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="Text Home"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <View
         android:id="@+id/view"
         android:layout_width="match_parent"
@@ -41,10 +26,12 @@
         android:layout_marginTop="24dp"
         android:background="@drawable/rounded_background"
         android:drawablePadding="10dp"
+        android:gravity="center|start"
         android:padding="20dp"
         android:text="Mensagem motivacional"
         android:textAlignment="textStart"
         android:textColor="@color/black"
+        android:textSize="15dp"
         app:drawableStartCompat="@drawable/star"
         app:drawableTint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
@@ -62,11 +49,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Weekly Progress"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view" />
+
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="40dp"
         android:layout_marginTop="24dp"
         android:background="@drawable/rounded_background"
         android:gravity="center"
@@ -78,9 +76,10 @@
 
         <ImageButton
             android:id="@+id/imageButton"
-            android:layout_width="140dp"
-            android:layout_height="120dp"
+            android:layout_width="120dp"
+            android:layout_height="100dp"
             android:background="@drawable/rounded_background"
+            android:contentDescription="New Exercise"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_exercises"
             app:tint="@color/gray" />
@@ -89,7 +88,7 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="2dp"
             android:gravity="center"
             android:text="New Exercise"
             android:textColor="@color/black"
@@ -102,7 +101,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="40dp"
         android:background="@drawable/rounded_background"
         android:gravity="center"
         android:orientation="vertical"
@@ -112,9 +111,10 @@
 
         <ImageButton
             android:id="@+id/imageButton2"
-            android:layout_width="140dp"
-            android:layout_height="120dp"
+            android:layout_width="120dp"
+            android:layout_height="100dp"
             android:background="@drawable/rounded_background"
+            android:contentDescription="Personal Info"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_profile"
             app:tint="@color/gray" />
@@ -123,13 +123,72 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="2dp"
             android:gravity="center"
             android:text="Personal Info"
             android:textColor="@color/black"
             android:textSize="16sp" />
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/rounded_background"
+        android:drawableStart="@drawable/ic_analytics"
+        android:drawablePadding="10dp"
+        android:drawableTint="@color/black"
+        android:gravity="center|start"
+        android:padding="12dp"
+        android:text="Workouts"
+        android:textColor="@color/black"
+        android:textSize="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/rounded_background"
+        android:drawableStart="@drawable/ic_analytics"
+        android:drawablePadding="10dp"
+        android:drawableTint="@color/black"
+        android:gravity="center|start"
+        android:padding="12dp"
+        android:text="Sets"
+        android:textColor="@color/black"
+        android:textSize="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/rounded_background"
+        android:drawableStart="@drawable/ic_analytics"
+        android:drawablePadding="10dp"
+        android:drawableTint="@color/black"
+        android:gravity="center|start"
+        android:padding="12dp"
+        android:text="Repetitions"
+        android:textColor="@color/black"
+        android:textSize="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
