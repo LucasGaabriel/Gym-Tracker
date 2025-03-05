@@ -1,16 +1,12 @@
-package com.lucascosta.gymtracker
+package com.lucascosta.gymtracker.ui
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.navigation.findNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.lucascosta.gymtracker.R
 import com.lucascosta.gymtracker.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
