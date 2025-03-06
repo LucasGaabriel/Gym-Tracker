@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.lucascosta.gymtracker.databinding.FragmentRoutinesBinding
 
 class RoutinesFragment : Fragment() {
@@ -30,6 +31,9 @@ class RoutinesFragment : Fragment() {
         routinesViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
+
+        binding.recyclerListRoutines.layoutManager = LinearLayoutManager(context)
+
         return root
     }
 

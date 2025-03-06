@@ -13,4 +13,7 @@ class RoutineModel {
 
     @ColumnInfo(name = "name")
     var name: String = ""
+
+    @ColumnInfo(name = "description")
+    var description: String = ""
 }

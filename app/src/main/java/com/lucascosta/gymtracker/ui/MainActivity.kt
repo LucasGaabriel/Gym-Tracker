@@ -6,6 +6,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.lucascosta.gymtracker.R
 import com.lucascosta.gymtracker.databinding.ActivityMainBinding
 
@@ -15,15 +16,14 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val navView: BottomNavigationView = binding.navView
+        setToolbarAndBottomNav()
+    }
 
-        val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment
-        val navController = navHostFragment.navController
+    fun setToolbarAndBottomNav() {
+        val navView: BottomNavigationView = binding.navView
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
 //        val appBarConfiguration = AppBarConfiguration(
@@ -36,15 +36,10 @@ class MainActivity : AppCompatActivity() {
 //            )
 //        )
 //        setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
-
-        setToolbar()
-    }
-
-    fun setToolbar() {
-        val navHostFrag = supportFragmentManager.
-        findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment
+        val navHostFrag = supportFragmentManager
+            .findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment
         val navController = navHostFrag.navController
+        navView.setupWithNavController(navController)
         val appBarConfiguration = AppBarConfiguration(navController.graph)
         binding.toolbar.setupWithNavController(navController, appBarConfiguration)
     }
