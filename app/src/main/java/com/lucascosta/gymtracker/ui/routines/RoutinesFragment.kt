@@ -61,9 +61,9 @@ class RoutinesFragment : Fragment() {
     fun setObserver() {
         listVM.getListMsg().observe(viewLifecycleOwner, Observer {
             if (it == Constants.DbMessages.SUCCESS) {
-                Toast.makeText(requireContext(), R.string.success_search, Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), R.string.success_search_routines, Toast.LENGTH_SHORT).show()
             } else if (it == Constants.DbMessages.FAIL) {
-                Toast.makeText(requireContext(), R.string.not_found_search, Toast.LENGTH_SHORT)
+                Toast.makeText(requireContext(), R.string.not_found_search_routines, Toast.LENGTH_SHORT)
                     .show()
             }
         })

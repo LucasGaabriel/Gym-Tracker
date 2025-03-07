@@ -7,15 +7,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.lucascosta.gymtracker.data.model.ExerciseModel
+import com.lucascosta.gymtracker.data.model.RoutineWithExercises
 import com.lucascosta.gymtracker.databinding.FragmentExercisesBinding
+import com.lucascosta.gymtracker.ui.adapter.ListExerciseAdapter
+import com.lucascosta.gymtracker.ui.listener.OnExerciseListener
+import com.lucascosta.gymtracker.ui.listener.OnRoutineListener
+import com.lucascosta.gymtracker.ui.routines.ListRoutinesViewModel
+import com.lucascosta.gymtracker.utils.Constants
 
 class ExercisesFragment : Fragment(), View.OnClickListener {
 
     private var _binding: FragmentExercisesBinding? = null
-
     private val binding get() = _binding!!
+    private lateinit var listVM: ListExercisesViewModel
+    private val adapter: ListExerciseAdapter = ListExerciseAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,17 +46,47 @@ class ExercisesFragment : Fragment(), View.OnClickListener {
 
         binding.button.setOnClickListener(this)
 
+        binding.recyclerListExercises.layoutManager = LinearLayoutManager(context)
+        binding.recyclerListExercises.adapter = adapter
+
+        listVM = ViewModelProvider(this)[ListExercisesViewModel::class.java]
+
+        val listener = object : OnExerciseListener {
+            override fun onClick(e: ExerciseModel) {
+                Toast.makeText(context, e.name, Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        adapter.setListener(listener)
+        listVM.getAllExercises()
+        setObserver()
+
         return root
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    fun setObserver() {
+        listVM.getListMsg().observe(viewLifecycleOwner, Observer {
+            if (it == Constants.DbMessages.SUCCESS) {
+                Toast.makeText(requireContext(), R.string.success_search_exercises, Toast.LENGTH_SHORT).show()
+            } else if (it == Constants.DbMessages.FAIL) {
+                Toast.makeText(requireContext(), R.string.not_found_search_exercises, Toast.LENGTH_SHORT)
+                    .show()
+            }
+        })
+
+        listVM.getExerciseList().observe(viewLifecycleOwner, Observer {
+            adapter.updateExerciseList(it)
+        })
     }
 
     override fun onClick(v: View) {
         if (v.id == R.id.button) {
             startActivity(Intent(context, ExerciseDetailActivity::class.java))
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
