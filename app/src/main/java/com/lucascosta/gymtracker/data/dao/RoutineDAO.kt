@@ -19,6 +19,9 @@ interface RoutineDAO {
     @Query("SELECT * FROM Routine WHERE routine_id = :id")
     fun getById(id: Int): RoutineModel
 
+//    @Query("SELECT * FROM Routine")
+//    fun getAllRoutines(): List<RoutineModel>
+
     @Transaction
     @Query("SELECT * FROM Routine")
     fun getRoutinesWithExercises(): List<RoutineWithExercises>

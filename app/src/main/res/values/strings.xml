@@ -5,4 +5,9 @@
     <string name="title_routines">Routines</string>
     <string name="title_exercises">Exercises</string>
     <string name="title_profile">Profile</string>
+
+
+    <!-- FINS DE DEBUG.. SERÁ REMOVIDO DEPOIS -->
+    <string name="success_search">Rotinas encontradas com sucesso</string>
+    <string name="not_found_search">Rotinas não encontradas no banco</string>
 </resources>
