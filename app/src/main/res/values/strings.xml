@@ -6,6 +6,19 @@
     <string name="title_exercises">Exercises</string>
     <string name="title_profile">Profile</string>
 
+    <string-array name="primary_muscles">
+        <item>ABDOMEN</item>
+        <item>FOREARMS</item>
+        <item>BICEPS</item>
+        <item>BACK</item>
+        <item>GLUTES</item>
+        <item>SHOULDERS</item>
+        <item>CHEST</item>
+        <item>LEGS</item>
+        <item>TRAPEZIUS</item>
+        <item>TRICEPS</item>
+    </string-array>
+
 
     <!-- FINS DE DEBUG.. SERÁ REMOVIDO DEPOIS -->
     <string name="success_search_routines">Rotinas encontradas com sucesso</string>

@@ -16,7 +16,7 @@
         android:background="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView14" />
+        app:layout_constraintTop_toBottomOf="@+id/sets" />
 
     <View
         android:id="@+id/view3"
@@ -27,7 +27,7 @@
         android:background="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView20" />
+        app:layout_constraintTop_toBottomOf="@+id/reps" />
 
     <View
         android:id="@+id/view4"
@@ -39,7 +39,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.733"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView22" />
+        app:layout_constraintTop_toBottomOf="@+id/notes" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -51,27 +51,27 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_exercises" />
 
-    <TextView
+    <EditText
         android:id="@+id/exercise_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="Exercise Name"
+        android:hint="Exercise Name"
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/save_exercise"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
         android:layout_marginBottom="32dp"
-        android:backgroundTint="@color/red_500"
-        android:drawableLeft="@drawable/trash"
+        android:backgroundTint="@color/green_500"
+        android:drawableLeft="@drawable/save"
         android:drawableTint="@color/black"
-        android:text="Delete Exercise"
+        android:text="Save Exercise"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -148,66 +148,73 @@
         app:layout_constraintStart_toEndOf="@+id/textView11"
         app:layout_constraintTop_toBottomOf="@+id/exercise_name" />
 
-    <TextView
-        android:id="@+id/textView13"
+    <Spinner
+        android:id="@+id/muscle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
-        android:text="Muscle"
+        android:padding="8dp"
+        android:entries="@array/primary_muscles"
+        android:text="Primary Muscle"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
-    <TextView
-        android:id="@+id/textView16"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/personal_record"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
-        android:text="Record"
+        android:inputType="numberDecimal"
+        android:hint="Personal Record"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
-    <TextView
-        android:id="@+id/textView22"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/notes"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
-        android:text="Annotation"
+        android:inputType="text"
+        android:hint="Notes"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView21" />
 
-    <TextView
-        android:id="@+id/textView20"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/reps"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Reps"
+        android:inputType="number"
+        android:hint="Reps"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="@+id/textView19"
         app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
-    <TextView
-        android:id="@+id/textView18"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/weight"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
-        android:text="Weigth"
+        android:inputType="numberDecimal"
+        android:hint="Weight"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
-    <TextView
-        android:id="@+id/textView14"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/sets"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Sets"
+        android:inputType="number"
+        android:hint="Sets"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="@+id/textView12"
         app:layout_constraintTop_toBottomOf="@+id/textView12" />

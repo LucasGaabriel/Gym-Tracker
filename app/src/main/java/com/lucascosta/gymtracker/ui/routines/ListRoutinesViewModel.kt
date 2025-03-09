@@ -25,10 +25,10 @@ class ListRoutinesViewModel(application: Application) : AndroidViewModel(applica
         val db = AppDatabase.getDatabase(getApplication()).RoutineDAO()
         try {
             val resp = db.getRoutinesWithExercises()
-            listMsg.value = Constants.DbMessages.SUCCESS
+            listMsg.value = Constants.DB_MSGS.SUCCESS
             routineList.value = resp
         } catch (e: Exception) {
-            listMsg.value = Constants.DbMessages.FAIL
+            listMsg.value = Constants.DB_MSGS.FAIL
         }
     }
 }

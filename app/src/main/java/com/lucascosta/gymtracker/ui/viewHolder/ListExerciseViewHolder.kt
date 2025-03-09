@@ -12,6 +12,7 @@ class ListExerciseViewHolder(
     RecyclerView.ViewHolder(binding.root) {
 
     fun bindVH(exercise: ExerciseModel) {
+        println("Exercise name: ${exercise.name.toString()} - Primary Muscle: ${exercise.primaryMuscle}")
         binding.name.text = exercise.name
         binding.primaryMuscleGroup.text = exercise.primaryMuscle.toString()
 

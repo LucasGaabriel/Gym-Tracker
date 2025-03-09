@@ -25,10 +25,10 @@ class ListExercisesViewModel(application: Application) : AndroidViewModel(applic
         val db = AppDatabase.getDatabase(getApplication()).ExerciseDAO()
         try {
             val resp = db.getAllExercises()
-            listMsg.value = Constants.DbMessages.SUCCESS
+            listMsg.value = Constants.DB_MSGS.SUCCESS
             exerciseList.value = resp
         } catch (e: Exception) {
-            listMsg.value = Constants.DbMessages.FAIL
+            listMsg.value = Constants.DB_MSGS.FAIL
         }
     }
 }

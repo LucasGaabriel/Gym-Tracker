@@ -1,6 +1,5 @@
 package com.lucascosta.gymtracker.ui.exercises
 
-import com.lucascosta.gymtracker.R
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,13 +11,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.lucascosta.gymtracker.R
 import com.lucascosta.gymtracker.data.model.ExerciseModel
-import com.lucascosta.gymtracker.data.model.RoutineWithExercises
 import com.lucascosta.gymtracker.databinding.FragmentExercisesBinding
 import com.lucascosta.gymtracker.ui.adapter.ListExerciseAdapter
 import com.lucascosta.gymtracker.ui.listener.OnExerciseListener
-import com.lucascosta.gymtracker.ui.listener.OnRoutineListener
-import com.lucascosta.gymtracker.ui.routines.ListRoutinesViewModel
 import com.lucascosta.gymtracker.utils.Constants
 
 class ExercisesFragment : Fragment(), View.OnClickListener {
@@ -39,10 +36,10 @@ class ExercisesFragment : Fragment(), View.OnClickListener {
         _binding = FragmentExercisesBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textExercises
-        exercisesViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
+//        val textView: TextView = binding.textExercises
+//        exercisesViewModel.text.observe(viewLifecycleOwner) {
+//            textView.text = it
+//        }
 
         binding.button.setOnClickListener(this)
 
@@ -66,9 +63,9 @@ class ExercisesFragment : Fragment(), View.OnClickListener {
 
     fun setObserver() {
         listVM.getListMsg().observe(viewLifecycleOwner, Observer {
-            if (it == Constants.DbMessages.SUCCESS) {
+            if (it == Constants.DB_MSGS.SUCCESS) {
                 Toast.makeText(requireContext(), R.string.success_search_exercises, Toast.LENGTH_SHORT).show()
-            } else if (it == Constants.DbMessages.FAIL) {
+            } else if (it == Constants.DB_MSGS.FAIL) {
                 Toast.makeText(requireContext(), R.string.not_found_search_exercises, Toast.LENGTH_SHORT)
                     .show()
             }
@@ -81,7 +78,7 @@ class ExercisesFragment : Fragment(), View.OnClickListener {
 
     override fun onClick(v: View) {
         if (v.id == R.id.button) {
-            startActivity(Intent(context, ExerciseDetailActivity::class.java))
+            startActivity(Intent(context, AddExerciseActivity::class.java))
         }
     }
 
