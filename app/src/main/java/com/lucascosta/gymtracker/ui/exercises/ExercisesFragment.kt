@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.lucascosta.gymtracker.R
 import com.lucascosta.gymtracker.data.model.ExerciseModel
@@ -78,7 +79,7 @@ class ExercisesFragment : Fragment(), View.OnClickListener {
 
     override fun onClick(v: View) {
         if (v.id == R.id.button) {
-            startActivity(Intent(context, AddExerciseActivity::class.java))
+            findNavController().navigate(R.id.action_navigation_exercises_to_navigation_add_exercise)
         }
     }
 

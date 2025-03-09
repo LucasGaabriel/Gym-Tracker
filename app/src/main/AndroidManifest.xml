@@ -13,14 +13,6 @@
         android:theme="@style/Theme.GymTracker"
         tools:targetApi="31">
         <activity
-            android:name=".ui.exercises.AddExerciseActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.exercises.ExerciseDetailActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
-        <activity
             android:name=".ui.LoginActivity"
             android:exported="true"
             android:screenOrientation="portrait"
