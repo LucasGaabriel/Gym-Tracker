@@ -3,9 +3,10 @@ package com.lucascosta.gymtracker.data.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 @Entity(tableName = "Exercise")
-class ExerciseModel {
+class ExerciseModel : Serializable {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "exercise_id")

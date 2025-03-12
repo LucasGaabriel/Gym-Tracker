@@ -36,6 +36,12 @@
     <fragment
         android:id="@+id/navigation_add_exercise"
         android:name="com.lucascosta.gymtracker.ui.exercises.AddExerciseFragment"
-        tools:layout="@layout/fragment_add_exercise" />
+        tools:layout="@layout/fragment_add_exercise" >
+        <argument
+            android:name="exercise"
+            app:argType="com.lucascosta.gymtracker.data.model.ExerciseModel"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
 
 </navigation>

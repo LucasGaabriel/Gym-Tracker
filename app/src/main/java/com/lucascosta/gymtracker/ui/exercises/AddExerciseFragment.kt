@@ -1,5 +1,6 @@
 package com.lucascosta.gymtracker.ui.exercises
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,7 @@ import com.lucascosta.gymtracker.data.model.ExerciseModel
 import com.lucascosta.gymtracker.data.model.PrimaryMuscle
 import com.lucascosta.gymtracker.databinding.FragmentAddExerciseBinding
 import com.lucascosta.gymtracker.utils.Constants
+import java.io.Serializable
 
 class AddExerciseFragment : Fragment(), View.OnClickListener {
 
@@ -27,7 +29,9 @@ class AddExerciseFragment : Fragment(), View.OnClickListener {
     ): View? {
         binding = FragmentAddExerciseBinding.inflate(inflater, container, false)
 
-        // Configure edge-to-edge layout
+        val exercise = arguments?.getSerializable(ARG_EXERCISE) as? ExerciseModel
+        exercise?.let { populateFields(it) } // Se for edição, preencher os campos
+
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -61,7 +65,7 @@ class AddExerciseFragment : Fragment(), View.OnClickListener {
                 }
 
                 addExerciseVM.saveExercise(e)
-                activity?.onBackPressed()  // Close the fragment
+                requireActivity().onBackPressedDispatcher.onBackPressed() // Close the fragment
 
             } catch (e: NumberFormatException) {
                 Toast.makeText(requireContext(), "Preencha todos os campos corretamente", Toast.LENGTH_SHORT).show()
@@ -83,5 +87,28 @@ class AddExerciseFragment : Fragment(), View.OnClickListener {
                 }
             }
         })
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun populateFields(exercise: ExerciseModel) {
+        binding.exerciseName.setText(exercise.name)
+        binding.muscle.setSelection(PrimaryMuscle.entries.indexOf(exercise.primaryMuscle))
+        binding.sets.setText(exercise.sets.toString())
+        binding.reps.setText(exercise.reps.toString())
+        binding.weight.setText(exercise.weight.toString())
+        binding.personalRecord.setText(exercise.personalRecord.toString())
+        binding.notes.setText(exercise.notes)
+    }
+
+    companion object {
+        private const val ARG_EXERCISE = "exercise"
+
+        fun newInstance(exercise: ExerciseModel?): AddExerciseFragment {
+            return AddExerciseFragment().apply {
+                arguments = Bundle().apply {
+                    putSerializable(ARG_EXERCISE, exercise) // Passando o exercício
+                }
+            }
+        }
     }
 }

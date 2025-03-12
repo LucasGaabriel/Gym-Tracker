@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.lucascosta.gymtracker.R
@@ -52,6 +53,9 @@ class ExercisesFragment : Fragment(), View.OnClickListener {
         val listener = object : OnExerciseListener {
             override fun onClick(e: ExerciseModel) {
                 Toast.makeText(context, e.name, Toast.LENGTH_SHORT).show()
+                val action =
+                    ExercisesFragmentDirections.actionNavigationExercisesToNavigationAddExercise(e)
+                findNavController().navigate(action)
             }
         }
 
@@ -65,9 +69,17 @@ class ExercisesFragment : Fragment(), View.OnClickListener {
     fun setObserver() {
         listVM.getListMsg().observe(viewLifecycleOwner, Observer {
             if (it == Constants.DB_MSGS.SUCCESS) {
-                Toast.makeText(requireContext(), R.string.success_search_exercises, Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(),
+                    R.string.success_search_exercises,
+                    Toast.LENGTH_SHORT
+                ).show()
             } else if (it == Constants.DB_MSGS.FAIL) {
-                Toast.makeText(requireContext(), R.string.not_found_search_exercises, Toast.LENGTH_SHORT)
+                Toast.makeText(
+                    requireContext(),
+                    R.string.not_found_search_exercises,
+                    Toast.LENGTH_SHORT
+                )
                     .show()
             }
         })
