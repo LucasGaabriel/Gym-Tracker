@@ -52,7 +52,7 @@ class ExercisesFragment : Fragment(), View.OnClickListener {
 
         val listener = object : OnExerciseListener {
             override fun onClick(e: ExerciseModel) {
-                Toast.makeText(context, e.name, Toast.LENGTH_SHORT).show()
+//                Toast.makeText(context, e.name, Toast.LENGTH_SHORT).show()
                 val action =
                     ExercisesFragmentDirections.actionNavigationExercisesToNavigationAddExercise(e)
                 findNavController().navigate(action)
@@ -67,22 +67,22 @@ class ExercisesFragment : Fragment(), View.OnClickListener {
     }
 
     fun setObserver() {
-        listVM.getListMsg().observe(viewLifecycleOwner, Observer {
-            if (it == Constants.DB_MSGS.SUCCESS) {
-                Toast.makeText(
-                    requireContext(),
-                    R.string.success_search_exercises,
-                    Toast.LENGTH_SHORT
-                ).show()
-            } else if (it == Constants.DB_MSGS.FAIL) {
-                Toast.makeText(
-                    requireContext(),
-                    R.string.not_found_search_exercises,
-                    Toast.LENGTH_SHORT
-                )
-                    .show()
-            }
-        })
+//        listVM.getListMsg().observe(viewLifecycleOwner, Observer {
+//            if (it == Constants.DB_MSGS.SUCCESS) {
+//                Toast.makeText(
+//                    requireContext(),
+//                    R.string.success_search_exercises,
+//                    Toast.LENGTH_SHORT
+//                ).show()
+//            } else if (it == Constants.DB_MSGS.FAIL) {
+//                Toast.makeText(
+//                    requireContext(),
+//                    R.string.not_found_search_exercises,
+//                    Toast.LENGTH_SHORT
+//                )
+//                    .show()
+//            }
+//        })
 
         listVM.getExerciseList().observe(viewLifecycleOwner, Observer {
             adapter.updateExerciseList(it)

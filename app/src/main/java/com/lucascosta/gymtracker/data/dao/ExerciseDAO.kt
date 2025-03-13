@@ -14,7 +14,7 @@ interface ExerciseDAO {
     fun update(e: ExerciseModel): Int
 
     @Delete
-    fun delete(e: ExerciseModel)
+    fun delete(e: ExerciseModel): Int
 
     @Query("SELECT * FROM Exercise WHERE exercise_id = :id")
     fun getById(id: Int): ExerciseModel
