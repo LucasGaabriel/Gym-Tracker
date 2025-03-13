@@ -37,6 +37,15 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         }
 
         auth = FirebaseAuth.getInstance()
+
+        // Verifica se já tem um usuário logado
+        if (auth.currentUser != null) {
+            Log.d(TAG, "Usuário já autenticado: ${auth.currentUser?.email}")
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+            return
+        }
+
         oneTapClient = Identity.getSignInClient(this)
 
         signInRequest = BeginSignInRequest.builder().setGoogleIdTokenRequestOptions(
