@@ -24,9 +24,11 @@ roomCompiler = "2.6.1"
 roomRuntime = "2.6.1"
 androidxNavigationSafeargsKotlinGradlePlugin = "2.8.8"
 androidxNavigationSafeargsGradlePlugin = "2.8.8"
+authApiImpl = "11.6.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+google-googleid = { module = "com.google.android.libraries.identity.googleid:googleid" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -48,6 +50,7 @@ androidx-room-compiler = { group = "androidx.room", name = "room-compiler", vers
 androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "roomRuntime" }
 androidx-androidx-navigation-safeargs-kotlin-gradle-plugin = { group = "androidx.navigation.safeargs.kotlin", name = "androidx.navigation.safeargs.kotlin.gradle.plugin", version.ref = "androidxNavigationSafeargsKotlinGradlePlugin" }
 androidx-androidx-navigation-safeargs-gradle-plugin = { group = "androidx.navigation.safeargs", name = "androidx.navigation.safeargs.gradle.plugin", version.ref = "androidxNavigationSafeargsGradlePlugin" }
+auth-api-impl = { group = "com.google.android.gms", name = "auth-api-impl", version.ref = "authApiImpl" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

@@ -5,6 +5,7 @@
     <string name="title_routines">Routines</string>
     <string name="title_exercises">Exercises</string>
     <string name="title_profile">Profile</string>
+    <string name="default_web_client_id">69803421723-i08n81jo5ici02nuc3iv6ufev5g1baun.apps.googleusercontent.com</string>
 
     <string-array name="primary_muscles">
         <item>ABDOMEN</item>
