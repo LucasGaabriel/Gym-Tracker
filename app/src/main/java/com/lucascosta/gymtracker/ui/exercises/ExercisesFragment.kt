@@ -43,7 +43,7 @@ class ExercisesFragment : Fragment(), View.OnClickListener {
 //            textView.text = it
 //        }
 
-        binding.button.setOnClickListener(this)
+        binding.addNewExercise.setOnClickListener(this)
 
         binding.recyclerListExercises.layoutManager = LinearLayoutManager(context)
         binding.recyclerListExercises.adapter = adapter
@@ -90,7 +90,7 @@ class ExercisesFragment : Fragment(), View.OnClickListener {
     }
 
     override fun onClick(v: View) {
-        if (v.id == R.id.button) {
+        if (v.id == R.id.add_new_exercise) {
             findNavController().navigate(R.id.action_navigation_exercises_to_navigation_add_exercise)
         }
     }

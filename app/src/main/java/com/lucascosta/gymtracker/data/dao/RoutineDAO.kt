@@ -14,7 +14,7 @@ interface RoutineDAO {
     fun update(r: RoutineModel): Int
 
     @Delete
-    fun delete(r: RoutineModel)
+    fun delete(r: RoutineModel): Int
 
     @Query("SELECT * FROM Routine WHERE routine_id = :id")
     fun getById(id: Int): RoutineModel

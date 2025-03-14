@@ -15,7 +15,7 @@ class ListRoutineViewHolder(
         binding.title.text = routine.routine.name
         binding.description.text = routine.routine.description
 
-        binding.title.setOnClickListener {
+        binding.routine.setOnClickListener {
             listener.onClick(routine)
         }
     }
