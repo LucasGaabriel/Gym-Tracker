@@ -49,7 +49,32 @@ class ProfileFragment : Fragment(), View.OnClickListener {
             if (it > 0) binding.bodyWeight.text = it.toString()
         }
         profileViewModel.bmi.observe(viewLifecycleOwner) {
-            binding.bmi.text = "%.2f".format(it)
+            when (it) {
+                in 0f..18.5f -> {
+                    binding.bmi.text = "%.2f (Underweight)".format(it)
+                    binding.bmi.setTextColor(resources.getColor(R.color.blue_500))
+                }
+
+                in 18.5f..24.9f -> {
+                    binding.bmi.text = "%.2f (Normal Weight)".format(it)
+                    binding.bmi.setTextColor(resources.getColor(R.color.green_500))
+                }
+
+                in 25f..29.9f -> {
+                    binding.bmi.text = "%.2f (Overweight)".format(it)
+                    binding.bmi.setTextColor(resources.getColor(R.color.yellow_500))
+                }
+
+                in 30f..Float.POSITIVE_INFINITY -> {
+                    binding.bmi.text = "%.2f (Obesity)".format(it)
+                    binding.bmi.setTextColor(resources.getColor(R.color.red_500))
+                }
+
+                else -> {
+                    binding.bmi.text = "Invalid BMI"
+                    binding.bmi.setTextColor(resources.getColor(R.color.white))
+                }
+            }
         }
 
         binding.editProfile.setOnClickListener(this)
