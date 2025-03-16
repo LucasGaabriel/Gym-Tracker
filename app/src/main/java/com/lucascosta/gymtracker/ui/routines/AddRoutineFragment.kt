@@ -22,6 +22,7 @@ import com.lucascosta.gymtracker.data.room.AppDatabase
 import com.lucascosta.gymtracker.databinding.FragmentAddRoutineBinding
 import com.lucascosta.gymtracker.ui.adapter.ListExerciseInRoutineAdapter
 import com.lucascosta.gymtracker.ui.exercises.ListExercisesViewModel
+import com.lucascosta.gymtracker.ui.home.HomeViewModel
 import com.lucascosta.gymtracker.ui.listener.OnExerciseListener
 import com.lucascosta.gymtracker.utils.Constants
 
@@ -31,6 +32,7 @@ class AddRoutineFragment : Fragment(), View.OnClickListener {
     private lateinit var addRoutineVM: AddRoutineViewModel
     private lateinit var listVM: ListExerciseInRoutineViewModel
     private lateinit var listExercisesVM: ListExercisesViewModel
+    private lateinit var homeVM: HomeViewModel
     private val args: AddRoutineFragmentArgs by navArgs()
     private val adapter: ListExerciseInRoutineAdapter = ListExerciseInRoutineAdapter()
 
@@ -43,6 +45,7 @@ class AddRoutineFragment : Fragment(), View.OnClickListener {
         listVM = ViewModelProvider(this)[ListExerciseInRoutineViewModel::class.java]
         addRoutineVM = ViewModelProvider(this)[AddRoutineViewModel::class.java]
         listExercisesVM = ViewModelProvider(this)[ListExercisesViewModel::class.java]
+        homeVM = ViewModelProvider(this)[HomeViewModel::class.java]
 
         val routine = args.routine
         routine?.let { populateFields(it) } // Se for edição, preencher os campos
@@ -60,6 +63,7 @@ class AddRoutineFragment : Fragment(), View.OnClickListener {
         binding.deleteRoutine.setOnClickListener(this)
         binding.addExercise.setOnClickListener(this)
         binding.removeExercise.setOnClickListener(this)
+        binding.markAsDone.setOnClickListener(this)
 
         if (routine != null) {
             listVM.routineWithExercises.observe(
@@ -148,6 +152,29 @@ class AddRoutineFragment : Fragment(), View.OnClickListener {
                     addRoutineVM.removeExerciseToRoutine(routine.routine, selectedExercise)
                     listVM.getExercisesByRoutine(routine.routine.routineId)
                 }
+            }
+
+            R.id.mark_as_done -> {
+                var totalWorkouts = homeVM.totalWorkouts.value ?: 0
+                var totalSets = homeVM.totalSets.value ?: 0
+                var totalReps = homeVM.totalReps.value ?: 0
+
+                totalWorkouts += 1
+
+                routine?.exercises?.let {
+                    totalSets += it.sumOf { it.sets }
+                    totalReps += it.sumOf { it.reps }
+                }
+
+                homeVM.setRoutineProgress(totalWorkouts, totalSets, totalReps)
+                homeVM.loadRoutineProgress()
+
+                Toast.makeText(
+                    requireContext(),
+                    "Rotina marcada como concluída com sucesso.",
+                    Toast.LENGTH_SHORT
+                ).show()
+                requireActivity().onBackPressedDispatcher.onBackPressed()
             }
         }
     }

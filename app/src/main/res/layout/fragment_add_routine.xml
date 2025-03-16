@@ -112,7 +112,7 @@
         android:id="@+id/exercise_list"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/spinner_exercises"
+        app:layout_constraintBottom_toTopOf="@+id/mark_as_done"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -123,8 +123,20 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
-        android:layout_marginBottom="5dp"
-        app:layout_constraintBottom_toTopOf="@+id/add_exercise"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/remove_exercise"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/mark_as_done"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="@color/yellow_500"
+        android:text="Marcar rotina como realizada."
+        app:layout_constraintBottom_toTopOf="@+id/spinner_exercises"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

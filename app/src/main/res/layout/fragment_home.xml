@@ -94,7 +94,7 @@
         app:layout_constraintTop_toBottomOf="@id/motivational_phrase" />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/workouts_progress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
@@ -113,7 +113,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/sets_progress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
@@ -130,10 +130,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        app:layout_constraintTop_toBottomOf="@+id/workouts_progress" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/repetitions_progress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
@@ -150,7 +150,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+        app:layout_constraintTop_toBottomOf="@+id/sets_progress" />
+
+    <Button
+        android:id="@+id/erase_progress"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Limpar Progresso"
+        android:drawableLeft="@drawable/trash"
+        android:drawableTint="@color/black"
+        android:backgroundTint="@color/red_500"
+        android:layout_margin="30dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

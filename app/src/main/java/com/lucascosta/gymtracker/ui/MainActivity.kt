@@ -1,5 +1,6 @@
 package com.lucascosta.gymtracker.ui
 
+import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -22,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         setToolbarAndBottomNav()
     }
 
-    fun setToolbarAndBottomNav() {
+    private fun setToolbarAndBottomNav() {
         val navView: BottomNavigationView = binding.navView
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.

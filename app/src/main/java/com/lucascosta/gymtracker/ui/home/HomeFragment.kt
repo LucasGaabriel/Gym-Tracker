@@ -1,5 +1,6 @@
 package com.lucascosta.gymtracker.ui.home
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -34,9 +35,13 @@ class HomeFragment : Fragment(), View.OnClickListener {
             binding.motivationalPhrase.text = phrase
         }
 
+        observeRoutinePrefs()
+        homeViewModel.loadRoutineProgress()
+
         binding.newExercise.setOnClickListener(this)
         binding.personalInfo.setOnClickListener(this)
         binding.motivationalPhrase.setOnClickListener(this)
+        binding.eraseProgress.setOnClickListener(this)
 
         return binding.root
     }
@@ -51,6 +56,24 @@ class HomeFragment : Fragment(), View.OnClickListener {
         } else if (v.id == R.id.motivational_phrase) {
             // Mostrar nova frase motivacional
             homeViewModel.loadMotivationalPhrase()
+        } else if (v.id == R.id.erase_progress) {
+            // Limpar progresso de rotinas
+            val sharedPreferences =
+                requireActivity().getSharedPreferences("RoutinePrefs", Context.MODE_PRIVATE)
+            sharedPreferences.edit().clear().apply()
+            homeViewModel.setRoutineProgress(0, 0, 0)
+        }
+    }
+
+    fun observeRoutinePrefs() {
+        homeViewModel.totalWorkouts.observe(viewLifecycleOwner) { totalWorkouts ->
+            binding.workoutsProgress.text = "${totalWorkouts.toString()} Workouts"
+        }
+        homeViewModel.totalSets.observe(viewLifecycleOwner) { totalSets ->
+            binding.setsProgress.text = "${totalSets.toString()} Sets"
+        }
+        homeViewModel.totalReps.observe(viewLifecycleOwner) { totalReps ->
+            binding.repetitionsProgress.text = "${totalReps.toString()} Reps"
         }
     }
 
