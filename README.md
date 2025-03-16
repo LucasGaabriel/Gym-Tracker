@@ -8,16 +8,16 @@ Gym Tracker é um aplicativo desenvolvido para ajudar no gerenciamento de treino
 Permite adicionar novos exercícios à rotina de treino, definindo nome, séries, repetições e peso.
 
 <p align="center">
-  <img src="docs/tela_exercicios.jpeg" alt="Tela Exercícios" width="45%">
-  <img src="docs/tela_editar_exercicio.jpeg" alt="Tela Editar Exercício" width="45%">
+  <img src="docs/tela_exercicios.jpeg" alt="Tela Exercícios" width="20%">
+  <img src="docs/tela_editar_exercicio.jpeg" alt="Tela Editar Exercício" width="20%">
 </p>
 
 ### 📅 Criar Rotinas de Treino
 Permite criar rotinas de treino personalizadas, agrupando os exercícios que deseja realizar em um dia específico. Isso facilita o gerenciamento do seu plano de treino.
 
 <p align="center">
-  <img src="docs/tela_rotinas.jpeg" alt="Tela Rotinas" width="45%">
-  <img src="docs/tela_editar_rotina.jpeg" alt="Tela Editar Rotina" width="45%">
+  <img src="docs/tela_rotinas.jpeg" alt="Tela Rotinas" width="20%">
+  <img src="docs/tela_editar_rotina.jpeg" alt="Tela Editar Rotina" width="20%">
 </p>
 
 ### ✅ Marcar Rotinas como Concluídas
@@ -27,21 +27,21 @@ Acompanhe seu progresso marcando treinos concluídos. O app mantém um históric
 Monitore sua saúde física com o cálculo automático do Índice de Massa Corporal (IMC), baseado na sua altura e peso.
 
 <p align="center">
-  <img src="docs/tela_perfil.jpeg" alt="Tela Perfil" width="45%">
+  <img src="docs/tela_perfil.jpeg" alt="Tela Perfil" width="20%">
 </p>
 
 ### 💬 Mensagens Motivacionais
 Receba frases motivacionais na tela inicial para se manter motivado a alcançar seus objetivos!
 
 <p align="center">
-  <img src="docs/tela_inicio.jpeg" alt="Tela Início" width="45%">
+  <img src="docs/tela_inicio.jpeg" alt="Tela Início" width="20%">
 </p>
 
 ### 🔐 Login com Google
 Login rápido e seguro utilizando sua conta do Google.
 
 <p align="center">
-  <img src="docs/tela_login.jpeg" alt="Tela Login" width="45%">
+  <img src="docs/tela_login.jpeg" alt="Tela Login" width="20%">
 </p>
 
 ## 🔧 Tecnologias Utilizadas
