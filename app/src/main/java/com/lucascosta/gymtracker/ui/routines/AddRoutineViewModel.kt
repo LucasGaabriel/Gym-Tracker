@@ -72,4 +72,23 @@ class AddRoutineViewModel(application: Application) : AndroidViewModel(applicati
             savedMsg.value = Constants.DB_MSGS.EXERCISE_ALREADY_EXISTS
         }
     }
+
+    fun removeExerciseToRoutine(r: RoutineModel, e: ExerciseModel) {
+        val db = AppDatabase.getDatabase(getApplication())
+        val routineExerciseDao = db.RoutineDAO()
+
+        // Verificar se o exercício já está associado à rotina
+        val existingCrossRef = routineExerciseDao.getExerciseFromRoutine(r.routineId, e.exerciseId)
+
+        if (existingCrossRef != null) {
+            try {
+                // Inserir o exercício na tabela de junção
+                val crossRef = RoutineExerciseCrossRef(r.routineId, e.exerciseId)
+                val resp = routineExerciseDao.deleteRoutineExerciseCrossRef(crossRef)
+                savedMsg.value = if (resp > 0) Constants.DB_MSGS.SUCCESS else Constants.DB_MSGS.FAIL
+            } catch (e: SQLiteConstraintException) {
+                savedMsg.value = Constants.DB_MSGS.CONSTRAINT
+            }
+        }
+    }
 }

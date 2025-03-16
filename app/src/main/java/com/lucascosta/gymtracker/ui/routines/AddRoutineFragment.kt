@@ -21,8 +21,6 @@ import com.lucascosta.gymtracker.data.model.RoutineWithExercises
 import com.lucascosta.gymtracker.data.room.AppDatabase
 import com.lucascosta.gymtracker.databinding.FragmentAddRoutineBinding
 import com.lucascosta.gymtracker.ui.adapter.ListExerciseInRoutineAdapter
-import com.lucascosta.gymtracker.ui.adapter.ListRoutineAdapter
-import com.lucascosta.gymtracker.ui.exercises.ExercisesFragmentDirections
 import com.lucascosta.gymtracker.ui.exercises.ListExercisesViewModel
 import com.lucascosta.gymtracker.ui.listener.OnExerciseListener
 import com.lucascosta.gymtracker.utils.Constants
@@ -61,6 +59,7 @@ class AddRoutineFragment : Fragment(), View.OnClickListener {
         binding.saveRoutine.setOnClickListener(this)
         binding.deleteRoutine.setOnClickListener(this)
         binding.addExercise.setOnClickListener(this)
+        binding.removeExercise.setOnClickListener(this)
 
         if (routine != null) {
             listVM.routineWithExercises.observe(
@@ -75,7 +74,6 @@ class AddRoutineFragment : Fragment(), View.OnClickListener {
 
         val listener = object : OnExerciseListener {
             override fun onClick(e: ExerciseModel) {
-//                Toast.makeText(context, "TESTEEE", Toast.LENGTH_SHORT).show()
                 val action =
                     AddRoutineFragmentDirections.actionAddRoutineFragmentToNavigationAddExercise(e)
                 findNavController().navigate(action)
@@ -108,13 +106,6 @@ class AddRoutineFragment : Fragment(), View.OnClickListener {
                         addRoutineVM.saveRoutine(r)
                     }
 
-                    Toast.makeText(
-                        requireContext(),
-                        if (routine != null) "Rotina atualizada com sucesso."
-                        else "Rotina adicionada com sucesso.",
-                        Toast.LENGTH_SHORT
-                    ).show()
-
                     requireActivity().onBackPressedDispatcher.onBackPressed()
 
                 } catch (e: NumberFormatException) {
@@ -127,19 +118,8 @@ class AddRoutineFragment : Fragment(), View.OnClickListener {
             }
 
             R.id.delete_routine -> {
-                try {
-                    routine?.let { addRoutineVM.deleteRoutine(it.routine) }
-
-                    Toast.makeText(
-                        requireContext(),
-                        "Rotina deletada com sucesso.",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    requireActivity().onBackPressedDispatcher.onBackPressed()
-                } catch (e: Exception) {
-                    Toast.makeText(requireContext(), "Erro ao deletar rotina", Toast.LENGTH_SHORT)
-                        .show()
-                }
+                routine?.let { addRoutineVM.deleteRoutine(it.routine) }
+                requireActivity().onBackPressedDispatcher.onBackPressed()
             }
 
             R.id.add_exercise -> {
@@ -151,20 +131,22 @@ class AddRoutineFragment : Fragment(), View.OnClickListener {
 
                 if (routine != null) {
                     // Chamar a função do ViewModel para adicionar o exercício à rotina
-                    val routine = addRoutineVM.addExerciseToRoutine(routine.routine, selectedExercise)
-                    Toast.makeText(
-                        requireContext(),
-                        "Exercício adicionado a rotina!",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    println(routine)
-                } else {
-                    // Exibir uma mensagem de erro se o exercício não for encontrado
-                    Toast.makeText(
-                        requireContext(),
-                        "Exercício não encontrado!",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    addRoutineVM.addExerciseToRoutine(routine.routine, selectedExercise)
+                    listVM.getExercisesByRoutine(routine.routine.routineId)
+                }
+            }
+
+            R.id.remove_exercise -> {
+                val selectedExerciseName = binding.spinnerExercises.selectedItem.toString()
+
+                // Buscar o exercício no banco de dados usando o nome selecionado
+                val exerciseDao = AppDatabase.getDatabase(requireContext()).ExerciseDAO()
+                val selectedExercise = exerciseDao.getByName(selectedExerciseName)
+
+                if (routine != null) {
+                    // Chamar a função do ViewModel para adicionar o exercício à rotina
+                    addRoutineVM.removeExerciseToRoutine(routine.routine, selectedExercise)
+                    listVM.getExercisesByRoutine(routine.routine.routineId)
                 }
             }
         }
@@ -176,7 +158,7 @@ class AddRoutineFragment : Fragment(), View.OnClickListener {
                 Constants.DB_MSGS.SUCCESS -> {
                     Toast.makeText(
                         requireContext(),
-                        "Rotina adicionada com sucesso",
+                        "Rotina atualizada com sucesso.",
                         Toast.LENGTH_SHORT
                     ).show()
                 }
@@ -184,15 +166,7 @@ class AddRoutineFragment : Fragment(), View.OnClickListener {
                 Constants.DB_MSGS.FAIL -> {
                     Toast.makeText(
                         requireContext(),
-                        "Erro ao adicionar rotina",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-
-                Constants.DB_MSGS.CONSTRAINT -> {
-                    Toast.makeText(
-                        requireContext(),
-                        "Já existe uma rotina com esse nome",
+                        "Erro ao adicionar rotina.",
                         Toast.LENGTH_SHORT
                     ).show()
                 }

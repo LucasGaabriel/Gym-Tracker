@@ -22,6 +22,6 @@ interface ExerciseDAO {
     @Query("SELECT * FROM Exercise WHERE name = :name")
     fun getByName(name: String): ExerciseModel
 
-    @Query("SELECT * FROM Exercise")
+    @Query("SELECT * FROM Exercise ORDER BY name ASC")
     fun getAllExercises(): List<ExerciseModel>
 }

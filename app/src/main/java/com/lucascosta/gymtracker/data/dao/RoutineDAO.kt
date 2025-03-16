@@ -34,6 +34,9 @@ interface RoutineDAO {
     @Insert
     fun insertRoutineExerciseCrossRef(crossRef: RoutineExerciseCrossRef): Long
 
+    @Delete
+    fun deleteRoutineExerciseCrossRef(crossRef: RoutineExerciseCrossRef): Int
+
     @Query("SELECT * FROM RoutineExerciseCrossRef WHERE routine_id = :routineId AND exercise_id = :exerciseId")
     fun getExerciseFromRoutine(routineId: Int, exerciseId: Int): RoutineExerciseCrossRef?
 }
