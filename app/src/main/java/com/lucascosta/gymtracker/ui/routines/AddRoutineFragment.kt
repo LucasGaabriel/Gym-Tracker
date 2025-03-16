@@ -10,18 +10,23 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.lucascosta.gymtracker.R
 import com.lucascosta.gymtracker.data.model.RoutineModel
 import com.lucascosta.gymtracker.data.model.RoutineWithExercises
 import com.lucascosta.gymtracker.databinding.FragmentAddRoutineBinding
+import com.lucascosta.gymtracker.ui.adapter.ListExerciseInRoutineAdapter
+import com.lucascosta.gymtracker.ui.adapter.ListRoutineAdapter
 import com.lucascosta.gymtracker.utils.Constants
 
 class AddRoutineFragment : Fragment(), View.OnClickListener {
 
     private lateinit var binding: FragmentAddRoutineBinding
     private lateinit var addRoutineVM: AddRoutineViewModel
+    private lateinit var listVM: ListExerciseInRoutineViewModel
     private val args: AddRoutineFragmentArgs by navArgs()
+    private val adapter: ListExerciseInRoutineAdapter = ListExerciseInRoutineAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,6 +34,8 @@ class AddRoutineFragment : Fragment(), View.OnClickListener {
     ): View? {
         binding = FragmentAddRoutineBinding.inflate(inflater, container, false)
 
+        listVM = ViewModelProvider(this)[ListExerciseInRoutineViewModel::class.java]
+        addRoutineVM = ViewModelProvider(this)[AddRoutineViewModel::class.java]
 
         val routine = args.routine
         routine?.let { populateFields(it) } // Se for edição, preencher os campos
@@ -42,71 +49,75 @@ class AddRoutineFragment : Fragment(), View.OnClickListener {
         binding.saveRoutine.setOnClickListener(this)
         binding.deleteRoutine.setOnClickListener(this)
 
-        addRoutineVM = ViewModelProvider(this)[AddRoutineViewModel::class.java]
+        if (routine != null) {
+            listVM.routineWithExercises.observe(viewLifecycleOwner, Observer { routineWithExercises ->
+                routineWithExercises?.let {
+                    adapter.updateExerciseList(it.exercises)
+                }
+            })
+            listVM.getExercisesByRoutine(routine.routine.routineId)
+        }
+
         setObserver()
 
         return binding.root
     }
 
     override fun onClick(view: View) {
-        if (view.id == R.id.save_routine) {
-            try {
-                var id: Int
-                val routine = args.routine
-                routine?.let { id = it.routine.routineId }
+        val routine = args.routine
 
-//                val exercises = args.exercises
+        when (view.id) {
+            R.id.save_routine -> {
+                try {
+                    val r = RoutineModel().apply {
+                        this.routineId = routine?.routine?.routineId ?: 0
+                        this.name = binding.routineName.text.toString()
+                        this.description = binding.description.text.toString()
+                    }
 
-                val r = RoutineModel().apply {
-                    this.routineId = routine?.routine?.routineId ?: 0 // Set the ID if it's an existing routine
-                    this.name = binding.routineName.text.toString()
-                    this.description = binding.description.text.toString()
+                    if (routine != null) {
+                        addRoutineVM.updateRoutine(r)
+                    } else {
+                        addRoutineVM.saveRoutine(r)
+                    }
+
+                    Toast.makeText(
+                        requireContext(),
+                        if (routine != null) "Rotina atualizada com sucesso."
+                        else "Rotina adicionada com sucesso.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                    requireActivity().onBackPressedDispatcher.onBackPressed()
+
+                } catch (e: NumberFormatException) {
+                    Toast.makeText(
+                        requireContext(),
+                        "Preencha todos os campos corretamente",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
+            }
 
-                if (routine != null) {
-                    addRoutineVM.updateRoutine(r) // Update if it's an existing routine
-                } else {
-                    addRoutineVM.saveRoutine(r) // Save if it's a new routine
+            R.id.delete_routine -> {
+                try {
+                    routine?.let { addRoutineVM.deleteRoutine(it.routine) }
+
+                    Toast.makeText(requireContext(), "Rotina deletada com sucesso.", Toast.LENGTH_SHORT).show()
+                    requireActivity().onBackPressedDispatcher.onBackPressed()
+                } catch (e: Exception) {
+                    Toast.makeText(requireContext(), "Erro ao deletar rotina", Toast.LENGTH_SHORT).show()
                 }
-
-                Toast.makeText(
-                    requireContext(),
-                    if (routine != null)
-                        "Rotina atualizada com sucesso."
-                    else "Rotina adicionada com sucesso.",
-                    Toast.LENGTH_SHORT
-                ).show()
-
-                requireActivity().onBackPressedDispatcher.onBackPressed() // Close the fragment
-
-            } catch (e: NumberFormatException) {
-                Toast.makeText(
-                    requireContext(),
-                    "Preencha todos os campos corretamente",
-                    Toast.LENGTH_SHORT
-                ).show()
             }
-        } else if (view.id == R.id.delete_routine) {
-            try {
-                val routine = args.routine
-                routine?.let { addRoutineVM.deleteRoutine(it.routine) }
 
-                Toast.makeText(
-                    requireContext(),
-                    "Rotina deletada com sucesso.",
-                    Toast.LENGTH_SHORT
-                ).show()
-
-                requireActivity().onBackPressedDispatcher.onBackPressed() // Close the fragment
-            } catch (e: Exception) {
-                Toast.makeText(
-                    requireContext(),
-                    "Erro ao deletar rotina",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
+//            R.id.add_exercise -> {
+//                // Abrir um novo fragment para selecionar exercícios (Substitua pelo correto)
+//                val action = AddRoutineFragmentDirections.actionAddRoutineFragmentToSelectExerciseFragment()
+//                findNavController().navigate(action)
+//            }
         }
     }
+
 
     private fun setObserver() {
         addRoutineVM.getIsSaved().observe(viewLifecycleOwner, Observer {

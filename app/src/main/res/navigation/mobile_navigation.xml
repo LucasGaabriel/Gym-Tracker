@@ -78,13 +78,13 @@
     <fragment
         android:id="@+id/addRoutineFragment"
         android:name="com.lucascosta.gymtracker.ui.routines.AddRoutineFragment"
-        android:label="AddRoutineFragment"
-        tools:layout="@layout/fragment_add_routine" >
+        android:label="@string/title_routines"
+        tools:layout="@layout/fragment_add_routine">
         <argument
             android:name="routine"
+            android:defaultValue="@null"
             app:argType="com.lucascosta.gymtracker.data.model.RoutineWithExercises"
-            app:nullable="true"
-            android:defaultValue="@null" />
+            app:nullable="true" />
     </fragment>
 
 </navigation>
