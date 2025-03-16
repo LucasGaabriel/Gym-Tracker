@@ -1,6 +1,5 @@
 package com.lucascosta.gymtracker.ui.routines
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,15 +12,10 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.lucascosta.gymtracker.R
-import com.lucascosta.gymtracker.data.model.ExerciseModel
-import com.lucascosta.gymtracker.data.model.PrimaryMuscle
 import com.lucascosta.gymtracker.data.model.RoutineModel
-import com.lucascosta.gymtracker.databinding.FragmentAddExerciseBinding
+import com.lucascosta.gymtracker.data.model.RoutineWithExercises
 import com.lucascosta.gymtracker.databinding.FragmentAddRoutineBinding
-import com.lucascosta.gymtracker.ui.exercises.AddExerciseFragmentArgs
-import com.lucascosta.gymtracker.ui.exercises.AddExerciseViewModel
 import com.lucascosta.gymtracker.utils.Constants
-import java.io.Serializable
 
 class AddRoutineFragment : Fragment(), View.OnClickListener {
 
@@ -59,13 +53,14 @@ class AddRoutineFragment : Fragment(), View.OnClickListener {
             try {
                 var id: Int
                 val routine = args.routine
-                routine?.let { id = it.routineId }
+                routine?.let { id = it.routine.routineId }
 
 //                val exercises = args.exercises
 
                 val r = RoutineModel().apply {
-                    this.routineId = routine?.routineId ?: 0 // Set the ID if it's an existing routine
+                    this.routineId = routine?.routine?.routineId ?: 0 // Set the ID if it's an existing routine
                     this.name = binding.routineName.text.toString()
+                    this.description = binding.description.text.toString()
                 }
 
                 if (routine != null) {
@@ -94,7 +89,7 @@ class AddRoutineFragment : Fragment(), View.OnClickListener {
         } else if (view.id == R.id.delete_routine) {
             try {
                 val routine = args.routine
-                routine?.let { addRoutineVM.deleteRoutine(it) }
+                routine?.let { addRoutineVM.deleteRoutine(it.routine) }
 
                 Toast.makeText(
                     requireContext(),
@@ -143,8 +138,8 @@ class AddRoutineFragment : Fragment(), View.OnClickListener {
         })
     }
 
-    private fun populateFields(routine: RoutineModel) {
-        binding.routineName.setText(routine.name)
-        binding.description.setText(routine.description)
+    private fun populateFields(routine: RoutineWithExercises) {
+        binding.routineName.setText(routine.routine.name)
+        binding.description.setText(routine.routine.description)
     }
 }

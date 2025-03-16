@@ -17,6 +17,7 @@ import com.lucascosta.gymtracker.ui.listener.OnRoutineListener
 import com.lucascosta.gymtracker.utils.Constants
 import com.lucascosta.gymtracker.data.model.RoutineWithExercises
 import com.lucascosta.gymtracker.R
+import com.lucascosta.gymtracker.ui.exercises.ExercisesFragmentDirections
 
 class RoutinesFragment : Fragment(), View.OnClickListener {
 
@@ -50,7 +51,10 @@ class RoutinesFragment : Fragment(), View.OnClickListener {
 
         val listener = object : OnRoutineListener {
             override fun onClick(r: RoutineWithExercises) {
-                Toast.makeText(context, r.routine.name, Toast.LENGTH_SHORT).show()
+//                Toast.makeText(context, r.routine.name, Toast.LENGTH_SHORT).show()
+                val action =
+                    RoutinesFragmentDirections.actionNavigationRoutinesToAddRoutineFragment(r)
+                findNavController().navigate(action)
             }
         }
 

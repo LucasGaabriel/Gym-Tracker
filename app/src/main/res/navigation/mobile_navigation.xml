@@ -82,12 +82,7 @@
         tools:layout="@layout/fragment_add_routine" >
         <argument
             android:name="routine"
-            app:argType="com.lucascosta.gymtracker.data.model.RoutineModel"
-            app:nullable="true"
-            android:defaultValue="@null" />
-        <argument
-            android:name="exercises"
-            app:argType="com.lucascosta.gymtracker.data.model.ExerciseModel[]"
+            app:argType="com.lucascosta.gymtracker.data.model.RoutineWithExercises"
             app:nullable="true"
             android:defaultValue="@null" />
     </fragment>
