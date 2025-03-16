@@ -31,12 +31,14 @@
         android:id="@+id/save_routine"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginStart="10dp"
         android:backgroundTint="@color/green_500"
         android:drawableLeft="@drawable/save"
         android:drawableTint="@color/black"
+        android:lines="2"
+        android:minHeight="60dp"
         android:text="Save Routine"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -46,16 +48,18 @@
         android:id="@+id/add_exercise"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="30dp"
         android:layout_marginStart="10dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="8dp"
         android:backgroundTint="@color/blue_500"
         android:drawableLeft="@drawable/add"
-        android:layout_marginBottom="8dp"
         android:drawableTint="@color/black"
+        android:lines="2"
+        android:minHeight="60dp"
         android:text="Add Exercise"
         app:layout_constraintBottom_toTopOf="@+id/save_routine"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/remove_exercise"/>
+        app:layout_constraintStart_toEndOf="@id/remove_exercise" />
 
     <Button
         android:id="@+id/remove_exercise"
@@ -67,6 +71,8 @@
         android:backgroundTint="@color/blue_500"
         android:drawableLeft="@drawable/remove"
         android:drawableTint="@color/black"
+        android:lines="2"
+        android:minHeight="60dp"
         android:text="Remove Exercise"
         app:layout_constraintBottom_toTopOf="@+id/save_routine"
         app:layout_constraintEnd_toStartOf="@+id/add_exercise"
@@ -77,15 +83,17 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:layout_marginBottom="8dp"
         android:layout_marginEnd="10dp"
+        android:layout_marginBottom="8dp"
         android:backgroundTint="@color/red_500"
         android:drawableLeft="@drawable/trash"
         android:drawableTint="@color/black"
+        android:lines="2"
+        android:minHeight="60dp"
         android:text="Delete Routine"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/save_routine"/>
+        app:layout_constraintEnd_toStartOf="@id/save_routine"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/description"
@@ -113,9 +121,9 @@
     <Spinner
         android:id="@+id/spinner_exercises"
         android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
         android:layout_marginBottom="5dp"
-        android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/add_exercise"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
