@@ -48,7 +48,7 @@ class AddRoutineFragment : Fragment(), View.OnClickListener {
         homeVM = ViewModelProvider(this)[HomeViewModel::class.java]
 
         val routine = args.routine
-        routine?.let { populateFields(it) } // Se for edição, preencher os campos
+        routine?.let { populateFields(it) } // If an existing routine is passed, populate fields
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -112,7 +112,7 @@ class AddRoutineFragment : Fragment(), View.OnClickListener {
 
                     requireActivity().onBackPressedDispatcher.onBackPressed()
 
-                } catch (e: NumberFormatException) {
+                } catch (_: NumberFormatException) {
                     Toast.makeText(
                         requireContext(),
                         "Preencha todos os campos corretamente",

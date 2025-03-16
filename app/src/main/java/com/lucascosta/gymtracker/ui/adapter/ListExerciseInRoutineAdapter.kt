@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.lucascosta.gymtracker.data.model.ExerciseModel
 import com.lucascosta.gymtracker.databinding.ExerciseInRoutineLineBinding
-import com.lucascosta.gymtracker.databinding.ExerciseLineBinding
 import com.lucascosta.gymtracker.ui.listener.OnExerciseListener
 import com.lucascosta.gymtracker.ui.viewHolder.ListExerciseInRoutineViewHolder
 

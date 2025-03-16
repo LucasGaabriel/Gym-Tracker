@@ -13,10 +13,6 @@ class ListExercisesViewModel(application: Application) : AndroidViewModel(applic
     private var listMsg = MutableLiveData<Int>()
     private var exerciseList = MutableLiveData<List<ExerciseModel>>()
 
-    fun getListMsg(): LiveData<Int> {
-        return listMsg
-    }
-
     fun getExerciseList(): LiveData<List<ExerciseModel>> {
         return exerciseList
     }
@@ -27,7 +23,7 @@ class ListExercisesViewModel(application: Application) : AndroidViewModel(applic
             val resp = db.getAllExercises()
             listMsg.value = Constants.DB_MSGS.SUCCESS
             exerciseList.value = resp
-        } catch (e: Exception) {
+        } catch (_: Exception) {
             listMsg.value = Constants.DB_MSGS.FAIL
         }
     }

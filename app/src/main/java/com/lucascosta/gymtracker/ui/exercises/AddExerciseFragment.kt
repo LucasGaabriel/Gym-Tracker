@@ -1,6 +1,5 @@
 package com.lucascosta.gymtracker.ui.exercises
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,7 +16,6 @@ import com.lucascosta.gymtracker.data.model.ExerciseModel
 import com.lucascosta.gymtracker.data.model.PrimaryMuscle
 import com.lucascosta.gymtracker.databinding.FragmentAddExerciseBinding
 import com.lucascosta.gymtracker.utils.Constants
-import java.io.Serializable
 
 class AddExerciseFragment : Fragment(), View.OnClickListener {
 
@@ -31,9 +29,8 @@ class AddExerciseFragment : Fragment(), View.OnClickListener {
     ): View? {
         binding = FragmentAddExerciseBinding.inflate(inflater, container, false)
 
-
         val exercise = args.exercise
-        exercise?.let { populateFields(it) } // Se for edição, preencher os campos
+        exercise?.let { populateFields(it) } // If editing an existing exercise, populate fields
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -58,7 +55,8 @@ class AddExerciseFragment : Fragment(), View.OnClickListener {
                 exercise?.let { id = it.exerciseId }
 
                 val e = ExerciseModel().apply {
-                    this.exerciseId = exercise?.exerciseId ?: 0 // Set the ID if it's an existing exercise
+                    this.exerciseId =
+                        exercise?.exerciseId ?: 0 // Set the ID if it's an existing exercise
                     this.name = binding.exerciseName.text.toString()
 
                     // TODO: Modificar isso, pois quero usar nomes mais amigáveis no Spinner,
@@ -89,7 +87,7 @@ class AddExerciseFragment : Fragment(), View.OnClickListener {
 
                 requireActivity().onBackPressedDispatcher.onBackPressed() // Close the fragment
 
-            } catch (e: NumberFormatException) {
+            } catch (_: NumberFormatException) {
                 Toast.makeText(
                     requireContext(),
                     "Preencha todos os campos corretamente",
@@ -108,7 +106,7 @@ class AddExerciseFragment : Fragment(), View.OnClickListener {
                 ).show()
 
                 requireActivity().onBackPressedDispatcher.onBackPressed() // Close the fragment
-            } catch (e: Exception) {
+            } catch (_: Exception) {
                 Toast.makeText(
                     requireContext(),
                     "Erro ao deletar exercício",

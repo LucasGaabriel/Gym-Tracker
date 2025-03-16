@@ -13,7 +13,6 @@ import kotlinx.coroutines.launch
 class ListExerciseInRoutineViewModel(application: Application) : AndroidViewModel(application) {
 
     private val _listMsg = MutableLiveData<Int>()
-    val listMsg: LiveData<Int> get() = _listMsg
 
     private val _routineWithExercises = MutableLiveData<RoutineWithExercises>()
     val routineWithExercises: LiveData<RoutineWithExercises> get() = _routineWithExercises
@@ -29,7 +28,7 @@ class ListExerciseInRoutineViewModel(application: Application) : AndroidViewMode
                 } else {
                     _listMsg.value = Constants.DB_MSGS.FAIL
                 }
-            } catch (e: Exception) {
+            } catch (_: Exception) {
                 _listMsg.value = Constants.DB_MSGS.FAIL
             }
         }

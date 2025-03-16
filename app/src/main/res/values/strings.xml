@@ -51,10 +51,4 @@
     <string name="phrase_30">Nada muda se você não mudar.</string>
 
     <string name="default_web_client_id">69803421723-i08n81jo5ici02nuc3iv6ufev5g1baun.apps.googleusercontent.com</string>
-
-    <!-- FINS DE DEBUG.. SERÁ REMOVIDO DEPOIS -->
-    <string name="success_search_routines">Rotinas encontradas com sucesso</string>
-    <string name="not_found_search_routines">Rotinas não encontradas no banco</string>
-    <string name="success_search_exercises">Exercicios encontradas com sucesso</string>
-    <string name="not_found_search_exercises">Exercicios não encontradas no banco</string>
 </resources>

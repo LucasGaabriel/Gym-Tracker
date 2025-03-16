@@ -3,7 +3,6 @@ package com.lucascosta.gymtracker.ui.viewHolder
 import androidx.recyclerview.widget.RecyclerView
 import com.lucascosta.gymtracker.data.model.ExerciseModel
 import com.lucascosta.gymtracker.databinding.ExerciseInRoutineLineBinding
-import com.lucascosta.gymtracker.databinding.ExerciseLineBinding
 import com.lucascosta.gymtracker.ui.listener.OnExerciseListener
 
 class ListExerciseInRoutineViewHolder(

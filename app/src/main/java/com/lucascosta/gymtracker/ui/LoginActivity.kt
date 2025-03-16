@@ -93,7 +93,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         auth.signInWithCredential(credential).addOnCompleteListener(this) { task ->
             if (task.isSuccessful) {
                 Log.d(TAG, "signInWithCredential:success")
-                val user = auth.currentUser
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
             } else {

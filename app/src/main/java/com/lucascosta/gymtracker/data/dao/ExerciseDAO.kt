@@ -1,6 +1,5 @@
 package com.lucascosta.gymtracker.data.dao
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.lucascosta.gymtracker.data.model.ExerciseModel
 

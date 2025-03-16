@@ -13,10 +13,6 @@ class ListRoutinesViewModel(application: Application) : AndroidViewModel(applica
     private var listMsg = MutableLiveData<Int>()
     private var routineList = MutableLiveData<List<RoutineWithExercises>>()
 
-    fun getListMsg(): LiveData<Int> {
-        return listMsg
-    }
-
     fun getRoutineList(): LiveData<List<RoutineWithExercises>> {
         return routineList
     }
@@ -27,7 +23,7 @@ class ListRoutinesViewModel(application: Application) : AndroidViewModel(applica
             val resp = db.getRoutinesWithExercises()
             listMsg.value = Constants.DB_MSGS.SUCCESS
             routineList.value = resp
-        } catch (e: Exception) {
+        } catch (_: Exception) {
             listMsg.value = Constants.DB_MSGS.FAIL
         }
     }

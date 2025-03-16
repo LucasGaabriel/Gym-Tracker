@@ -19,13 +19,13 @@ class AddRoutineViewModel(application: Application) : AndroidViewModel(applicati
         return savedMsg
     }
 
-    fun saveRoutine(r: RoutineModel){
+    fun saveRoutine(r: RoutineModel) {
         val db = AppDatabase.getDatabase(getApplication()).RoutineDAO()
         var resp = 0L
         try {
             resp = db.insert(r)
-            savedMsg.value = if(resp > 0) Constants.DB_MSGS.SUCCESS else Constants.DB_MSGS.FAIL
-        } catch (e: SQLiteConstraintException){
+            savedMsg.value = if (resp > 0) Constants.DB_MSGS.SUCCESS else Constants.DB_MSGS.FAIL
+        } catch (_: SQLiteConstraintException) {
             savedMsg.value = Constants.DB_MSGS.CONSTRAINT
         }
 
@@ -35,8 +35,8 @@ class AddRoutineViewModel(application: Application) : AndroidViewModel(applicati
         val db = AppDatabase.getDatabase(getApplication()).RoutineDAO()
         try {
             val resp = db.delete(r)
-            savedMsg.value = if(resp > 0) Constants.DB_MSGS.SUCCESS else Constants.DB_MSGS.FAIL
-        } catch (e: SQLiteConstraintException) {
+            savedMsg.value = if (resp > 0) Constants.DB_MSGS.SUCCESS else Constants.DB_MSGS.FAIL
+        } catch (_: SQLiteConstraintException) {
             savedMsg.value = Constants.DB_MSGS.CONSTRAINT
         }
     }
@@ -45,8 +45,8 @@ class AddRoutineViewModel(application: Application) : AndroidViewModel(applicati
         val db = AppDatabase.getDatabase(getApplication()).RoutineDAO()
         try {
             val resp = db.update(r)
-            savedMsg.value = if(resp > 0) Constants.DB_MSGS.SUCCESS else Constants.DB_MSGS.FAIL
-        } catch (e: SQLiteConstraintException) {
+            savedMsg.value = if (resp > 0) Constants.DB_MSGS.SUCCESS else Constants.DB_MSGS.FAIL
+        } catch (_: SQLiteConstraintException) {
             savedMsg.value = Constants.DB_MSGS.CONSTRAINT
         }
     }
@@ -64,7 +64,7 @@ class AddRoutineViewModel(application: Application) : AndroidViewModel(applicati
                 val crossRef = RoutineExerciseCrossRef(r.routineId, e.exerciseId)
                 val resp = routineExerciseDao.insertRoutineExerciseCrossRef(crossRef)
                 savedMsg.value = if (resp > 0) Constants.DB_MSGS.SUCCESS else Constants.DB_MSGS.FAIL
-            } catch (e: SQLiteConstraintException) {
+            } catch (_: SQLiteConstraintException) {
                 savedMsg.value = Constants.DB_MSGS.CONSTRAINT
             }
         } else {
@@ -86,7 +86,7 @@ class AddRoutineViewModel(application: Application) : AndroidViewModel(applicati
                 val crossRef = RoutineExerciseCrossRef(r.routineId, e.exerciseId)
                 val resp = routineExerciseDao.deleteRoutineExerciseCrossRef(crossRef)
                 savedMsg.value = if (resp > 0) Constants.DB_MSGS.SUCCESS else Constants.DB_MSGS.FAIL
-            } catch (e: SQLiteConstraintException) {
+            } catch (_: SQLiteConstraintException) {
                 savedMsg.value = Constants.DB_MSGS.CONSTRAINT
             }
         }
