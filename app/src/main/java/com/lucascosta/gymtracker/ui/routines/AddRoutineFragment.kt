@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -12,12 +13,18 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.lucascosta.gymtracker.R
+import com.lucascosta.gymtracker.data.model.ExerciseModel
 import com.lucascosta.gymtracker.data.model.RoutineModel
 import com.lucascosta.gymtracker.data.model.RoutineWithExercises
+import com.lucascosta.gymtracker.data.room.AppDatabase
 import com.lucascosta.gymtracker.databinding.FragmentAddRoutineBinding
 import com.lucascosta.gymtracker.ui.adapter.ListExerciseInRoutineAdapter
 import com.lucascosta.gymtracker.ui.adapter.ListRoutineAdapter
+import com.lucascosta.gymtracker.ui.exercises.ExercisesFragmentDirections
+import com.lucascosta.gymtracker.ui.exercises.ListExercisesViewModel
+import com.lucascosta.gymtracker.ui.listener.OnExerciseListener
 import com.lucascosta.gymtracker.utils.Constants
 
 class AddRoutineFragment : Fragment(), View.OnClickListener {
@@ -25,6 +32,7 @@ class AddRoutineFragment : Fragment(), View.OnClickListener {
     private lateinit var binding: FragmentAddRoutineBinding
     private lateinit var addRoutineVM: AddRoutineViewModel
     private lateinit var listVM: ListExerciseInRoutineViewModel
+    private lateinit var listExercisesVM: ListExercisesViewModel
     private val args: AddRoutineFragmentArgs by navArgs()
     private val adapter: ListExerciseInRoutineAdapter = ListExerciseInRoutineAdapter()
 
@@ -36,6 +44,7 @@ class AddRoutineFragment : Fragment(), View.OnClickListener {
 
         listVM = ViewModelProvider(this)[ListExerciseInRoutineViewModel::class.java]
         addRoutineVM = ViewModelProvider(this)[AddRoutineViewModel::class.java]
+        listExercisesVM = ViewModelProvider(this)[ListExercisesViewModel::class.java]
 
         val routine = args.routine
         routine?.let { populateFields(it) } // Se for edição, preencher os campos
@@ -46,18 +55,36 @@ class AddRoutineFragment : Fragment(), View.OnClickListener {
             insets
         }
 
+        binding.exerciseList.layoutManager = LinearLayoutManager(context)
+        binding.exerciseList.adapter = adapter
+
         binding.saveRoutine.setOnClickListener(this)
         binding.deleteRoutine.setOnClickListener(this)
+        binding.addExercise.setOnClickListener(this)
 
         if (routine != null) {
-            listVM.routineWithExercises.observe(viewLifecycleOwner, Observer { routineWithExercises ->
-                routineWithExercises?.let {
-                    adapter.updateExerciseList(it.exercises)
-                }
-            })
+            listVM.routineWithExercises.observe(
+                viewLifecycleOwner,
+                Observer { routineWithExercises ->
+                    routineWithExercises?.let {
+                        adapter.updateExerciseList(it.exercises)
+                    }
+                })
             listVM.getExercisesByRoutine(routine.routine.routineId)
         }
 
+        val listener = object : OnExerciseListener {
+            override fun onClick(e: ExerciseModel) {
+//                Toast.makeText(context, "TESTEEE", Toast.LENGTH_SHORT).show()
+                val action =
+                    AddRoutineFragmentDirections.actionAddRoutineFragmentToNavigationAddExercise(e)
+                findNavController().navigate(action)
+            }
+        }
+
+        adapter.setListener(listener)
+
+        setSpinnerExercises()
         setObserver()
 
         return binding.root
@@ -103,21 +130,45 @@ class AddRoutineFragment : Fragment(), View.OnClickListener {
                 try {
                     routine?.let { addRoutineVM.deleteRoutine(it.routine) }
 
-                    Toast.makeText(requireContext(), "Rotina deletada com sucesso.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        requireContext(),
+                        "Rotina deletada com sucesso.",
+                        Toast.LENGTH_SHORT
+                    ).show()
                     requireActivity().onBackPressedDispatcher.onBackPressed()
                 } catch (e: Exception) {
-                    Toast.makeText(requireContext(), "Erro ao deletar rotina", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Erro ao deletar rotina", Toast.LENGTH_SHORT)
+                        .show()
                 }
             }
 
-//            R.id.add_exercise -> {
-//                // Abrir um novo fragment para selecionar exercícios (Substitua pelo correto)
-//                val action = AddRoutineFragmentDirections.actionAddRoutineFragmentToSelectExerciseFragment()
-//                findNavController().navigate(action)
-//            }
+            R.id.add_exercise -> {
+                val selectedExerciseName = binding.spinnerExercises.selectedItem.toString()
+
+                // Buscar o exercício no banco de dados usando o nome selecionado
+                val exerciseDao = AppDatabase.getDatabase(requireContext()).ExerciseDAO()
+                val selectedExercise = exerciseDao.getByName(selectedExerciseName)
+
+                if (routine != null) {
+                    // Chamar a função do ViewModel para adicionar o exercício à rotina
+                    val routine = addRoutineVM.addExerciseToRoutine(routine.routine, selectedExercise)
+                    Toast.makeText(
+                        requireContext(),
+                        "Exercício adicionado a rotina!",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    println(routine)
+                } else {
+                    // Exibir uma mensagem de erro se o exercício não for encontrado
+                    Toast.makeText(
+                        requireContext(),
+                        "Exercício não encontrado!",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
         }
     }
-
 
     private fun setObserver() {
         addRoutineVM.getIsSaved().observe(viewLifecycleOwner, Observer {
@@ -152,5 +203,16 @@ class AddRoutineFragment : Fragment(), View.OnClickListener {
     private fun populateFields(routine: RoutineWithExercises) {
         binding.routineName.setText(routine.routine.name)
         binding.description.setText(routine.routine.description)
+    }
+
+    private fun setSpinnerExercises() {
+        listExercisesVM.getAllExercises()
+        val exercisesNames = listExercisesVM.getExerciseList().value.orEmpty().map { it.name }
+        val adapter = ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_spinner_dropdown_item,
+            exercisesNames
+        )
+        binding.spinnerExercises.adapter = adapter
     }
 }

@@ -1,6 +1,7 @@
 package com.lucascosta.gymtracker.data.dao
 
 import androidx.room.*
+import com.lucascosta.gymtracker.data.model.RoutineExerciseCrossRef
 import com.lucascosta.gymtracker.data.model.RoutineModel
 import com.lucascosta.gymtracker.data.model.RoutineWithExercises
 
@@ -30,4 +31,9 @@ interface RoutineDAO {
     @Query("SELECT * FROM Routine WHERE routine_id = :routineId")
     fun getRoutineWithExercisesById(routineId: Int): RoutineWithExercises?
 
+    @Insert
+    fun insertRoutineExerciseCrossRef(crossRef: RoutineExerciseCrossRef): Long
+
+    @Query("SELECT * FROM RoutineExerciseCrossRef WHERE routine_id = :routineId AND exercise_id = :exerciseId")
+    fun getExerciseFromRoutine(routineId: Int, exerciseId: Int): RoutineExerciseCrossRef?
 }
