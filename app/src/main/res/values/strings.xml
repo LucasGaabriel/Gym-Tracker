@@ -5,7 +5,6 @@
     <string name="title_routines">Routines</string>
     <string name="title_exercises">Exercises</string>
     <string name="title_profile">Profile</string>
-    <string name="default_web_client_id">69803421723-i08n81jo5ici02nuc3iv6ufev5g1baun.apps.googleusercontent.com</string>
 
     <string-array name="primary_muscles">
         <item>ABDOMEN</item>
@@ -20,6 +19,38 @@
         <item>TRICEPS</item>
     </string-array>
 
+    <string name="phrase_1">Cada treino é um passo a mais na direção dos seus objetivos.</string>
+    <string name="phrase_2">Você nunca se arrependerá de ter treinado, mas pode se arrepender de não ter ido.</string>
+    <string name="phrase_3">O único treino ruim é aquele que não aconteceu.</string>
+    <string name="phrase_4">Disciplina é o que te faz continuar quando a motivação acaba.</string>
+    <string name="phrase_5">Resultados vêm com tempo, esforço e persistência.</string>
+    <string name="phrase_6">Seu corpo aguenta, sua mente é que precisa acreditar.</string>
+    <string name="phrase_7">Dor é passageira, mas a glória é eterna.</string>
+    <string name="phrase_8">A alimentação é tão importante quanto o treino.</string>
+    <string name="phrase_9">Você não precisa ser extremo, só precisa ser consistente.</string>
+    <string name="phrase_10">Seja melhor do que ontem, nem que seja só 1%.</string>
+    <string name="phrase_11">Grandes mudanças começam com pequenos hábitos diários.</string>
+    <string name="phrase_12">Ninguém pode treinar por você, faça acontecer!</string>
+    <string name="phrase_13">Seja forte o suficiente para começar e disciplinado para continuar.</string>
+    <string name="phrase_14">Exercício não é castigo, é um presente para seu corpo.</string>
+    <string name="phrase_15">Seu futuro depende do que você faz hoje.</string>
+    <string name="phrase_16">Você não precisa de sorte, precisa de esforço.</string>
+    <string name="phrase_17">Treine até que se torne um hábito, e não uma obrigação.</string>
+    <string name="phrase_18">Cuide do seu corpo, é o único lugar onde você tem para viver.</string>
+    <string name="phrase_19">A força não vem do físico, mas da vontade inquebrável.</string>
+    <string name="phrase_20">Cada repetição te leva um passo mais perto dos seus sonhos.</string>
+    <string name="phrase_21">O progresso pode ser lento, mas desistir não acelera nada.</string>
+    <string name="phrase_22">O impossível é apenas uma questão de tempo e dedicação.</string>
+    <string name="phrase_23">Treine como se sua vida dependesse disso, um dia ela pode depender.</string>
+    <string name="phrase_24">Não se compare com os outros, compare-se com quem você era ontem.</string>
+    <string name="phrase_25">Acredite em si mesmo e nada será impossível.</string>
+    <string name="phrase_26">O que você come em privado se reflete em público.</string>
+    <string name="phrase_27">Alimente seu corpo com comida saudável e sua mente com pensamentos positivos.</string>
+    <string name="phrase_28">Toda grande jornada começa com um primeiro passo.</string>
+    <string name="phrase_29">Músculos não se constroem com desculpas.</string>
+    <string name="phrase_30">Nada muda se você não mudar.</string>
+
+    <string name="default_web_client_id">69803421723-i08n81jo5ici02nuc3iv6ufev5g1baun.apps.googleusercontent.com</string>
 
     <!-- FINS DE DEBUG.. SERÁ REMOVIDO DEPOIS -->
     <string name="success_search_routines">Rotinas encontradas com sucesso</string>
