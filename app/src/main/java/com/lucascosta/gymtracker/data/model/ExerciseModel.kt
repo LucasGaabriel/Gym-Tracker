@@ -20,7 +20,7 @@ class ExerciseModel : Serializable, Parcelable {
     var name: String = ""
 
     @ColumnInfo(name = "primary_muscle")
-    var primaryMuscle: PrimaryMuscle? = null
+    var primaryMuscle: String = ""
 
     @ColumnInfo(name = "sets")
     var sets: Int = 0

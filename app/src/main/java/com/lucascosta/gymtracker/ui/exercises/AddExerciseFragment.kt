@@ -59,10 +59,9 @@ class AddExerciseFragment : Fragment(), View.OnClickListener {
                         exercise?.exerciseId ?: 0 // Set the ID if it's an existing exercise
                     this.name = binding.exerciseName.text.toString()
 
-                    // TODO: Modificar isso, pois quero usar nomes mais amigáveis no Spinner,
-                    // TODO: mas mesmo assim, pegar o nome corretamente do enum
+                    // TODO: Usando String, mas futuramente, deverá ser um PrimaryMuscle (ENUM)
                     val selectedMuscle = binding.muscle.selectedItem.toString()
-                    this.primaryMuscle = PrimaryMuscle.valueOf(selectedMuscle)
+                    this.primaryMuscle = selectedMuscle
 
                     this.sets = binding.sets.text.toString().toInt()
                     this.reps = binding.reps.text.toString().toInt()
@@ -148,7 +147,12 @@ class AddExerciseFragment : Fragment(), View.OnClickListener {
 
     private fun populateFields(exercise: ExerciseModel) {
         binding.exerciseName.setText(exercise.name)
-        binding.muscle.setSelection(PrimaryMuscle.entries.indexOf(exercise.primaryMuscle))
+
+        val primaryMusclesArray = resources.getStringArray(R.array.primary_muscles)
+        val muscleName = exercise.primaryMuscle
+        val index = primaryMusclesArray.indexOf(muscleName)
+        binding.muscle.setSelection(index)
+
         binding.sets.setText(String.format(exercise.sets.toString()))
         binding.reps.setText(String.format(exercise.reps.toString()))
         binding.weight.setText(String.format(exercise.weight.toString()))

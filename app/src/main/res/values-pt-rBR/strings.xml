@@ -31,6 +31,19 @@
     <string name="google_signin_with_credential_success">signInWithCredential:sucesso</string>
     <string name="google_signin_with_credential_failure">signInWithCredential:falha</string>
 
+    <string-array name="primary_muscles">
+        <item>Abdômen</item>
+        <item>Antebraços</item>
+        <item>Bíceps</item>
+        <item>Costas</item>
+        <item>Glúteos</item>
+        <item>Ombros</item>
+        <item>Peito</item>
+        <item>Pernas</item>
+        <item>Trapézio</item>
+        <item>Tríceps</item>
+    </string-array>
+
     <string name="phrase_1">Cada treino é um passo a mais na direção dos seus objetivos.</string>
     <string name="phrase_2">Você nunca se arrependerá de ter treinado, mas pode se arrepender de não ter ido.</string>
     <string name="phrase_3">O único treino ruim é aquele que não aconteceu.</string>
