@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.firebase.auth.FirebaseAuth
 import com.lucascosta.gymtracker.databinding.FragmentEditProfileBinding
+import com.lucascosta.gymtracker.R
 
 class EditProfileFragment : Fragment() {
 
@@ -19,16 +20,14 @@ class EditProfileFragment : Fragment() {
     private val args: EditProfileFragmentArgs by navArgs()
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = FragmentEditProfileBinding.inflate(inflater, container, false)
 
         binding.username.text = FirebaseAuth.getInstance().currentUser?.displayName
         binding.birthdate.setText(args.birthdate)
-        binding.height.setText(args.height.toString())
-        binding.bodyWeight.setText(args.bodyWeight.toString())
+        binding.height.setText(String.format(args.height.toString()))
+        binding.bodyWeight.setText(String.format(args.bodyWeight.toString()))
 
         binding.saveProfile.setOnClickListener {
             saveProfile()
@@ -44,13 +43,12 @@ class EditProfileFragment : Fragment() {
 
         if (height > 0 && bodyWeight > 0) {
             viewModel.setUserProfile(birthdate, height, bodyWeight)
-            Toast.makeText(requireContext(), "Perfil atualizado!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), R.string.updated_profile_success, Toast.LENGTH_SHORT)
+                .show()
             findNavController().popBackStack()
         } else {
             Toast.makeText(
-                requireContext(),
-                "Altura e peso devem ser maiores que 0.",
-                Toast.LENGTH_SHORT
+                requireContext(), R.string.height_and_weight_greater_than_zero, Toast.LENGTH_SHORT
             ).show()
         }
     }

@@ -80,8 +80,8 @@ class AddExerciseFragment : Fragment(), View.OnClickListener {
                 Toast.makeText(
                     requireContext(),
                     if (exercise != null)
-                        "Exercício atualizado com sucesso."
-                    else "Exercício adicionado com sucesso.",
+                        R.string.update_exercise_success
+                    else R.string.add_exercise_success,
                     Toast.LENGTH_SHORT
                 ).show()
 
@@ -90,7 +90,7 @@ class AddExerciseFragment : Fragment(), View.OnClickListener {
             } catch (_: NumberFormatException) {
                 Toast.makeText(
                     requireContext(),
-                    "Preencha todos os campos corretamente",
+                    R.string.fill_fields_warning,
                     Toast.LENGTH_SHORT
                 ).show()
             }
@@ -101,7 +101,7 @@ class AddExerciseFragment : Fragment(), View.OnClickListener {
 
                 Toast.makeText(
                     requireContext(),
-                    "Exercício deletado com sucesso.",
+                    R.string.delete_exercise_success,
                     Toast.LENGTH_SHORT
                 ).show()
 
@@ -109,7 +109,7 @@ class AddExerciseFragment : Fragment(), View.OnClickListener {
             } catch (_: Exception) {
                 Toast.makeText(
                     requireContext(),
-                    "Erro ao deletar exercício",
+                    R.string.delete_exercise_error,
                     Toast.LENGTH_SHORT
                 ).show()
             }
@@ -122,7 +122,7 @@ class AddExerciseFragment : Fragment(), View.OnClickListener {
                 Constants.DB_MSGS.SUCCESS -> {
                     Toast.makeText(
                         requireContext(),
-                        "Exercício adicionado com sucesso",
+                        R.string.add_exercise_success,
                         Toast.LENGTH_SHORT
                     ).show()
                 }
@@ -130,7 +130,7 @@ class AddExerciseFragment : Fragment(), View.OnClickListener {
                 Constants.DB_MSGS.FAIL -> {
                     Toast.makeText(
                         requireContext(),
-                        "Erro ao adicionar exercício",
+                        R.string.delete_exercise_error,
                         Toast.LENGTH_SHORT
                     ).show()
                 }
@@ -138,7 +138,7 @@ class AddExerciseFragment : Fragment(), View.OnClickListener {
                 Constants.DB_MSGS.CONSTRAINT -> {
                     Toast.makeText(
                         requireContext(),
-                        "Já existe um exercício com esse nome",
+                        R.string.same_name_exercise_error,
                         Toast.LENGTH_SHORT
                     ).show()
                 }

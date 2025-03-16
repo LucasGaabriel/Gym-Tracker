@@ -40,7 +40,11 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
         // Verifica se já tem um usuário logado
         if (auth.currentUser != null) {
-            Log.d(TAG, "Usuário já autenticado: ${auth.currentUser?.email}")
+            Log.d(
+                TAG, String.format(
+                    R.string.user_already_authenticated.toString(), auth.currentUser?.email
+                )
+            )
             startActivity(Intent(this, MainActivity::class.java))
             finish()
             return
@@ -69,7 +73,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 IntentSenderRequest.Builder(result.pendingIntent.intentSender).build()
             )
         }.addOnFailureListener { e ->
-            Log.e(TAG, "Google Sign-In failed", e)
+            Log.e(TAG, R.string.google_signin_failed.toString(), e)
         }
     }
 
@@ -83,7 +87,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                         firebaseAuthWithGoogle(idToken)
                     }
                 } catch (e: Exception) {
-                    Log.e(TAG, "Google Sign-In failed", e)
+                    Log.e(TAG, R.string.google_signin_failed.toString(), e)
                 }
             }
         }
@@ -92,11 +96,13 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         auth.signInWithCredential(credential).addOnCompleteListener(this) { task ->
             if (task.isSuccessful) {
-                Log.d(TAG, "signInWithCredential:success")
+                Log.d(TAG, R.string.google_signin_with_credential_success.toString())
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
             } else {
-                Log.w(TAG, "signInWithCredential:failure", task.exception)
+                Log.w(
+                    TAG, R.string.google_signin_with_credential_failure.toString(), task.exception
+                )
             }
         }
     }

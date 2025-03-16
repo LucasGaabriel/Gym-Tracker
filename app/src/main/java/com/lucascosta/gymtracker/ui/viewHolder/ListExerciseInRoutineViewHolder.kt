@@ -14,9 +14,9 @@ class ListExerciseInRoutineViewHolder(
     fun bindVH(exercise: ExerciseModel) {
         binding.name.text = exercise.name
         binding.primaryMuscleGroup.text = exercise.primaryMuscle.toString()
-        binding.sets.text = exercise.sets.toString()
-        binding.reps.text = exercise.reps.toString()
-        binding.weight.text = exercise.weight.toString()
+        binding.sets.text = String.format(exercise.sets.toString())
+        binding.reps.text = String.format(exercise.reps.toString())
+        binding.weight.text = String.format(exercise.weight.toString())
 
         binding.exercise.setOnClickListener {
             listener.onClick(exercise)

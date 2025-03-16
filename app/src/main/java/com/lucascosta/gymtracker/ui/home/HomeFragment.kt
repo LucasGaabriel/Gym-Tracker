@@ -19,9 +19,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
     private lateinit var homeViewModel: HomeViewModel
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
@@ -67,13 +65,16 @@ class HomeFragment : Fragment(), View.OnClickListener {
 
     fun observeRoutinePrefs() {
         homeViewModel.totalWorkouts.observe(viewLifecycleOwner) { totalWorkouts ->
-            binding.workoutsProgress.text = "${totalWorkouts.toString()} Workouts"
+            binding.workoutsProgress.text =
+                String.format(getString(R.string.workouts_progress), totalWorkouts)
         }
         homeViewModel.totalSets.observe(viewLifecycleOwner) { totalSets ->
-            binding.setsProgress.text = "${totalSets.toString()} Sets"
+            binding.setsProgress.text =
+                String.format(getString(R.string.sets_progress), totalSets)
         }
         homeViewModel.totalReps.observe(viewLifecycleOwner) { totalReps ->
-            binding.repetitionsProgress.text = "${totalReps.toString()} Reps"
+            binding.repetitionsProgress.text =
+                String.format(getString(R.string.reps_progress), totalReps)
         }
     }
 

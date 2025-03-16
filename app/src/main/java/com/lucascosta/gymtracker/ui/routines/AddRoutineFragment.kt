@@ -115,7 +115,7 @@ class AddRoutineFragment : Fragment(), View.OnClickListener {
                 } catch (_: NumberFormatException) {
                     Toast.makeText(
                         requireContext(),
-                        "Preencha todos os campos corretamente",
+                        R.string.fill_fields_warning,
                         Toast.LENGTH_SHORT
                     ).show()
                 }
@@ -171,7 +171,7 @@ class AddRoutineFragment : Fragment(), View.OnClickListener {
 
                 Toast.makeText(
                     requireContext(),
-                    "Rotina marcada como concluída com sucesso.",
+                    R.string.routine_marked_as_done,
                     Toast.LENGTH_SHORT
                 ).show()
                 requireActivity().onBackPressedDispatcher.onBackPressed()
@@ -185,7 +185,7 @@ class AddRoutineFragment : Fragment(), View.OnClickListener {
                 Constants.DB_MSGS.SUCCESS -> {
                     Toast.makeText(
                         requireContext(),
-                        "Rotina atualizada com sucesso.",
+                        R.string.routine_update_success,
                         Toast.LENGTH_SHORT
                     ).show()
                 }
@@ -193,7 +193,7 @@ class AddRoutineFragment : Fragment(), View.OnClickListener {
                 Constants.DB_MSGS.FAIL -> {
                     Toast.makeText(
                         requireContext(),
-                        "Erro ao adicionar rotina.",
+                        R.string.routine_update_error,
                         Toast.LENGTH_SHORT
                     ).show()
                 }

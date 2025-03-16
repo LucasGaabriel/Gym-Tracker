@@ -13,6 +13,7 @@
         android:layout_height="50dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
+        android:contentDescription="@string/routine_icon"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_routines" />
@@ -22,7 +23,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:hint="Routine Name"
+        android:autofillHints=""
+        android:hint="@string/routine_name"
+        android:inputType="text"
         android:textSize="25sp"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
         app:layout_constraintTop_toTopOf="@+id/imageView2" />
@@ -39,7 +42,7 @@
         android:drawableTint="@color/black"
         android:lines="2"
         android:minHeight="60dp"
-        android:text="Save Routine"
+        android:text="@string/save_routine"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/delete_routine" />
@@ -56,7 +59,7 @@
         android:drawableTint="@color/black"
         android:lines="2"
         android:minHeight="60dp"
-        android:text="Add Exercise"
+        android:text="@string/add_exercise"
         app:layout_constraintBottom_toTopOf="@+id/save_routine"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/remove_exercise" />
@@ -73,7 +76,7 @@
         android:drawableTint="@color/black"
         android:lines="2"
         android:minHeight="60dp"
-        android:text="Remove Exercise"
+        android:text="@string/remove_exercise"
         app:layout_constraintBottom_toTopOf="@+id/save_routine"
         app:layout_constraintEnd_toStartOf="@+id/add_exercise"
         app:layout_constraintStart_toStartOf="parent" />
@@ -90,7 +93,7 @@
         android:drawableTint="@color/black"
         android:lines="2"
         android:minHeight="60dp"
-        android:text="Delete Routine"
+        android:text="@string/delete_routine"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/save_routine"
         app:layout_constraintStart_toStartOf="parent" />
@@ -101,7 +104,8 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
         android:layout_marginTop="8dp"
-        android:hint="Description"
+        android:autofillHints=""
+        android:hint="@string/description"
         android:inputType="text"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -135,7 +139,7 @@
         android:layout_marginHorizontal="30dp"
         android:layout_marginBottom="8dp"
         android:backgroundTint="@color/yellow_500"
-        android:text="Marcar rotina como realizada."
+        android:text="@string/mark_routine_as_done"
         app:layout_constraintBottom_toTopOf="@+id/spinner_exercises"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -22,9 +23,7 @@ class ProfileFragment : Fragment(), View.OnClickListener {
     private val profileViewModel: EditProfileViewModel by activityViewModels()
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
 
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
@@ -35,44 +34,47 @@ class ProfileFragment : Fragment(), View.OnClickListener {
 
         binding.userName.text = FirebaseAuth.getInstance().currentUser?.displayName
         binding.birthdate.text = sharedPreferences.getString("birthdate", "")
-        binding.height.text = sharedPreferences.getFloat("height", 0f).toString()
-        binding.bodyWeight.text = sharedPreferences.getFloat("body_weight", 0f).toString()
-        binding.bmi.text = "%.2f".format(sharedPreferences.getFloat("bmi", 0f))
+        binding.height.text = String.format(sharedPreferences.getFloat("height", 0f).toString())
+        binding.bodyWeight.text =
+            String.format(sharedPreferences.getFloat("body_weight", 0f).toString())
+        binding.bmi.text = String.format(
+            R.string.formatting_float_number.toString(), sharedPreferences.getFloat("bmi", 0f)
+        )
 
         profileViewModel.birthdate.observe(viewLifecycleOwner) {
             binding.birthdate.text = it
         }
         profileViewModel.height.observe(viewLifecycleOwner) {
-            if (it > 0) binding.height.text = it.toString()
+            if (it > 0) binding.height.text = String.format(it.toString())
         }
         profileViewModel.bodyWeight.observe(viewLifecycleOwner) {
-            if (it > 0) binding.bodyWeight.text = it.toString()
+            if (it > 0) binding.bodyWeight.text = String.format(it.toString())
         }
         profileViewModel.bmi.observe(viewLifecycleOwner) {
             when (it) {
                 in 0f..18.5f -> {
-                    binding.bmi.text = "%.2f (Underweight)".format(it)
-                    binding.bmi.setTextColor(resources.getColor(R.color.blue_500))
+                    binding.bmi.text = String.format(getString(R.string.underweight_format), it)
+                    binding.bmi.setTextColor(ContextCompat.getColor(requireContext(), R.color.blue_500))
                 }
 
                 in 18.5f..24.9f -> {
-                    binding.bmi.text = "%.2f (Normal Weight)".format(it)
-                    binding.bmi.setTextColor(resources.getColor(R.color.green_500))
+                    binding.bmi.text = String.format(getString(R.string.normal_weight_format), it)
+                    binding.bmi.setTextColor(ContextCompat.getColor(requireContext(), R.color.green_500))
                 }
 
                 in 25f..29.9f -> {
-                    binding.bmi.text = "%.2f (Overweight)".format(it)
-                    binding.bmi.setTextColor(resources.getColor(R.color.yellow_500))
+                    binding.bmi.text = String.format(getString(R.string.overweight_format), it)
+                    binding.bmi.setTextColor(ContextCompat.getColor(requireContext(), R.color.yellow_500))
                 }
 
                 in 30f..Float.POSITIVE_INFINITY -> {
-                    binding.bmi.text = "%.2f (Obesity)".format(it)
-                    binding.bmi.setTextColor(resources.getColor(R.color.red_500))
+                    binding.bmi.text = String.format(getString(R.string.obesity_format), it)
+                    binding.bmi.setTextColor(ContextCompat.getColor(requireContext(), R.color.red_500))
                 }
 
                 else -> {
-                    binding.bmi.text = "Invalid BMI"
-                    binding.bmi.setTextColor(resources.getColor(R.color.white))
+                    binding.bmi.text = getString(R.string.invalid_bmi)
+                    binding.bmi.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
                 }
             }
         }
