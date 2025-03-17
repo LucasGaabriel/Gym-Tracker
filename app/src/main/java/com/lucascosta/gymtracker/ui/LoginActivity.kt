@@ -18,6 +18,11 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.lucascosta.gymtracker.R
 import com.lucascosta.gymtracker.databinding.ActivityLoginBinding
 
+/**
+ * Activity responsável pela tela de login com Google utilizando Firebase Authentication.
+ * Verifica se o usuário já está autenticado, e caso não, permite que o usuário se autentique via Google.
+ * Após a autenticação bem-sucedida, o usuário é redirecionado para a [MainActivity].
+ */
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var binding: ActivityLoginBinding
@@ -67,6 +72,11 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    /**
+     * Inicia o processo de login via Google, pedindo ao usuário para se autenticar.
+     *
+     * Em caso de sucesso, o processo de autenticação do Firebase é iniciado.
+     */
     private fun signInWithGoogle() {
         oneTapClient.beginSignIn(signInRequest).addOnSuccessListener { result ->
             googleSignInLauncher.launch(
@@ -77,6 +87,10 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    /**
+     * Lançador para o processo de login via Google.
+     * Após o sucesso da autenticação, converte o ID Token do Google para um credencial do Firebase.
+     */
     private val googleSignInLauncher =
         registerForActivityResult(ActivityResultContracts.StartIntentSenderForResult()) { result ->
             if (result.resultCode == RESULT_OK) {
@@ -92,6 +106,13 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             }
         }
 
+    /**
+     * Converte o ID Token do Google para uma credencial do Firebase e realiza a autenticação.
+     *
+     * Caso a autenticação seja bem-sucedida, o usuário é redirecionado para a [MainActivity].
+     *
+     * @param idToken O ID Token recebido da autenticação do Google.
+     */
     private fun firebaseAuthWithGoogle(idToken: String) {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         auth.signInWithCredential(credential).addOnCompleteListener(this) { task ->

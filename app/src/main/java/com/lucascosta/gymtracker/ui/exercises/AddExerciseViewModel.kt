@@ -9,6 +9,13 @@ import com.lucascosta.gymtracker.data.model.ExerciseModel
 import com.lucascosta.gymtracker.data.room.AppDatabase
 import com.lucascosta.gymtracker.utils.Constants
 
+/**
+ * ViewModel responsável por gerenciar as operações de adicionar, atualizar e excluir
+ * exercícios na base de dados. Ele interage com a camada de persistência (Room) e
+ * notifica a UI sobre o resultado das operações.
+ *
+ * @param application A aplicação em si, usada para acessar a base de dados.
+ */
 class AddExerciseViewModel(application: Application) : AndroidViewModel(application) {
 
     private var savedMsg = MutableLiveData<Int>()

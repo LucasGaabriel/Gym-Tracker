@@ -6,6 +6,13 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 
+/**
+ * ViewModel responsável pela gestão dos dados do perfil do usuário, incluindo data de nascimento, altura,
+ * peso corporal e cálculo do IMC (Índice de Massa Corporal).
+ * Os dados são armazenados e recuperados utilizando SharedPreferences.
+ *
+ * @param application A aplicação associada ao ViewModel.
+ */
 class EditProfileViewModel(application: Application) : AndroidViewModel(application) {
 
     private val sharedPreferences =
@@ -30,6 +37,14 @@ class EditProfileViewModel(application: Application) : AndroidViewModel(applicat
         _bmi.value = sharedPreferences.getFloat("bmi", 0f)
     }
 
+    /**
+     * Atualiza os dados do perfil e recalcula o IMC.
+     * Os dados atualizados são armazenados nos SharedPreferences.
+     *
+     * @param birthdate Data de nascimento do usuário.
+     * @param height Altura do usuário em centímetros.
+     * @param bodyWeight Peso corporal do usuário em quilogramas.
+     */
     fun setUserProfile(birthdate: String, height: Float, bodyWeight: Float) {
         val bmiValue = calculateBMI(height, bodyWeight)
 
@@ -46,6 +61,14 @@ class EditProfileViewModel(application: Application) : AndroidViewModel(applicat
         editor.apply()
     }
 
+    /**
+     * Calcula o IMC (Índice de Massa Corporal) com base na altura e no peso.
+     * O cálculo é feito com a fórmula: IMC = peso / (altura * altura), onde a altura é em cm.
+     *
+     * @param height Altura do usuário em centímetros.
+     * @param weight Peso do usuário em quilogramas.
+     * @return O valor do IMC ou -1f caso a altura seja inválida (menor ou igual a zero).
+     */
     private fun calculateBMI(height: Float, weight: Float): Float {
         return if (height > 0) weight / ((height / 100) * (height / 100)) else -1f
     }

@@ -13,10 +13,17 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.lucascosta.gymtracker.R
 import com.lucascosta.gymtracker.data.model.ExerciseModel
-import com.lucascosta.gymtracker.data.model.PrimaryMuscle
 import com.lucascosta.gymtracker.databinding.FragmentAddExerciseBinding
 import com.lucascosta.gymtracker.utils.Constants
 
+/**
+ * Fragmento para adicionar ou editar um exercício no aplicativo.
+ *
+ * Este fragmento permite ao usuário adicionar um novo exercício ou editar um exercício existente. Ele utiliza
+ * a [AddExerciseViewModel] para interagir com o banco de dados e salvar, atualizar ou excluir o exercício.
+ * Os dados do exercício podem ser preenchidos a partir dos campos de entrada, e o fragmento observa o resultado da operação
+ * para fornecer feedback ao usuário.
+ */
 class AddExerciseFragment : Fragment(), View.OnClickListener {
 
     private lateinit var binding: FragmentAddExerciseBinding
@@ -145,6 +152,11 @@ class AddExerciseFragment : Fragment(), View.OnClickListener {
         })
     }
 
+    /**
+     * Preenche os campos de entrada com os dados de um exercício existente.
+     *
+     * @param exercise O exercício cujos dados serão exibidos.
+     */
     private fun populateFields(exercise: ExerciseModel) {
         binding.exerciseName.setText(exercise.name)
 

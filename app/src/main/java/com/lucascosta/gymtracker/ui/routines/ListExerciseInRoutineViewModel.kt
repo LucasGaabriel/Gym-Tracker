@@ -10,6 +10,12 @@ import com.lucascosta.gymtracker.data.room.AppDatabase
 import com.lucascosta.gymtracker.utils.Constants
 import kotlinx.coroutines.launch
 
+/**
+ * ViewModel responsável pela busca dos exercícios associados a uma rotina específica.
+ * Utiliza coroutines para realizar a consulta no banco de dados de forma assíncrona.
+ *
+ * @param application O contexto da aplicação, fornecido pelo Android.
+ */
 class ListExerciseInRoutineViewModel(application: Application) : AndroidViewModel(application) {
 
     private val _listMsg = MutableLiveData<Int>()

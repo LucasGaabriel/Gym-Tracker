@@ -12,6 +12,12 @@ import com.lucascosta.gymtracker.data.dao.RoutineDAO
 import com.lucascosta.gymtracker.data.model.Converters
 import com.lucascosta.gymtracker.data.model.RoutineExerciseCrossRef
 
+/**
+ * Banco de dados do aplicativo [GymTracker], usando o Room.
+ *
+ * Essa classe define o banco de dados que contém as entidades [ExerciseModel], [RoutineModel] e [RoutineExerciseCrossRef].
+ * Também configura os DAOs (Data Access Objects) responsáveis pelo acesso a essas entidades no banco de dados.
+ */
 @Database(
     entities = [ExerciseModel::class, RoutineModel::class, RoutineExerciseCrossRef::class],
     version = 1

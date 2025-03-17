@@ -15,6 +15,14 @@ import com.lucascosta.gymtracker.databinding.FragmentExercisesBinding
 import com.lucascosta.gymtracker.ui.adapter.ListExerciseAdapter
 import com.lucascosta.gymtracker.ui.listener.OnExerciseListener
 
+/**
+ * Fragment que exibe a lista de exercícios cadastrados. Ele exibe os dados de exercícios
+ * usando um RecyclerView e permite a navegação para uma tela onde um exercício pode ser adicionado ou editado.
+ *
+ * @see ListExercisesViewModel Para gerenciar a lista de exercícios.
+ * @see ListExerciseAdapter Para adaptar os dados de exercícios para exibição.
+ * @see OnExerciseListener Para interagir com os itens da lista de exercícios.
+ */
 class ExercisesFragment : Fragment(), View.OnClickListener {
 
     private var _binding: FragmentExercisesBinding? = null
@@ -58,6 +66,7 @@ class ExercisesFragment : Fragment(), View.OnClickListener {
 
     override fun onClick(v: View) {
         if (v.id == R.id.add_new_exercise) {
+            // Navegar para a tela de adição de exercício
             findNavController().navigate(R.id.action_navigation_exercises_to_navigation_add_exercise)
         }
     }

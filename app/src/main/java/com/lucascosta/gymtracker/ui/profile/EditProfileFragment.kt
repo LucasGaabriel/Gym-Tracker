@@ -13,6 +13,11 @@ import com.google.firebase.auth.FirebaseAuth
 import com.lucascosta.gymtracker.databinding.FragmentEditProfileBinding
 import com.lucascosta.gymtracker.R
 
+/**
+ * Fragmento responsável por editar o perfil do usuário.
+ * Permite que o usuário altere a data de nascimento, altura e peso corporal.
+ * A atualização é salva no ViewModel compartilhado e na interface de navegação.
+ */
 class EditProfileFragment : Fragment() {
 
     private lateinit var binding: FragmentEditProfileBinding
@@ -36,6 +41,10 @@ class EditProfileFragment : Fragment() {
         return binding.root
     }
 
+    /**
+     * Salva as alterações do perfil. Verifica se a altura e o peso são válidos antes de salvar.
+     * Exibe um Toast para informar se a atualização foi bem-sucedida ou se houve erro.
+     */
     private fun saveProfile() {
         val birthdate = binding.birthdate.text.toString()
         val height = binding.height.text.toString().toFloatOrNull() ?: 0f

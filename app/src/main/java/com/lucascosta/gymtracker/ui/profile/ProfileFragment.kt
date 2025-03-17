@@ -15,6 +15,11 @@ import com.lucascosta.gymtracker.databinding.FragmentProfileBinding
 import com.lucascosta.gymtracker.R
 import com.lucascosta.gymtracker.ui.LoginActivity
 
+/**
+ * Fragmento responsável pela exibição e interação com o perfil do usuário.
+ * Permite ao usuário visualizar e editar seus dados pessoais, como data de nascimento, altura, peso e IMC.
+ * Também oferece a funcionalidade de logout.
+ */
 class ProfileFragment : Fragment(), View.OnClickListener {
 
     private var _binding: FragmentProfileBinding? = null

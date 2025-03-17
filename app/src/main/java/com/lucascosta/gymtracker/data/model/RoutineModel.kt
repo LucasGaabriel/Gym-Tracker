@@ -5,6 +5,12 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.io.Serializable
 
+/**
+ * Modelo de dados que representa uma rotina de exercícios na aplicação.
+ *
+ * Esta classe é uma entidade do Room Database, armazenada na tabela "Routine".
+ * A classe implementa [Serializable] para facilitar a transferência de dados entre componentes.
+ */
 @Entity(tableName = "Routine")
 class RoutineModel : Serializable {
 

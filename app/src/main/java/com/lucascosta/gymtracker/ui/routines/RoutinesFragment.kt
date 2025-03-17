@@ -15,6 +15,10 @@ import com.lucascosta.gymtracker.databinding.FragmentRoutinesBinding
 import com.lucascosta.gymtracker.ui.adapter.ListRoutineAdapter
 import com.lucascosta.gymtracker.ui.listener.OnRoutineListener
 
+/**
+ * Fragment que exibe a lista de rotinas cadastradas, juntamente com seus exercícios associados.
+ * Permite ao usuário visualizar, adicionar e editar rotinas.
+ */
 class RoutinesFragment : Fragment(), View.OnClickListener {
 
     private var _binding: FragmentRoutinesBinding? = null

@@ -9,6 +9,11 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.lucascosta.gymtracker.R
 import com.lucascosta.gymtracker.databinding.ActivityMainBinding
 
+/**
+ * A [MainActivity] gerencia a tela principal do aplicativo, configurando a navegação entre fragmentos
+ * utilizando a [BottomNavigationView] e uma [Toolbar].
+ * Essa Activity é responsável por configurar a navegação de forma fluída entre os fragmentos com o uso do NavController.
+ */
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -21,6 +26,11 @@ class MainActivity : AppCompatActivity() {
         setToolbarAndBottomNav()
     }
 
+    /**
+     * Método para configurar a navegação e a Toolbar.
+     * Estabelece o relacionamento entre o [NavController], [BottomNavigationView] e [Toolbar],
+     * permitindo a navegação fluida entre os fragmentos.
+     */
     private fun setToolbarAndBottomNav() {
         val navView: BottomNavigationView = binding.navView
         val navHostFrag =

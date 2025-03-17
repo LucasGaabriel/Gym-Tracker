@@ -11,6 +11,12 @@ import com.lucascosta.gymtracker.data.model.RoutineModel
 import com.lucascosta.gymtracker.data.room.AppDatabase
 import com.lucascosta.gymtracker.utils.Constants
 
+/**
+ * ViewModel responsável pela gestão das rotinas de treino. Ele gerencia a inserção, atualização,
+ * exclusão e manipulação dos exercícios associados às rotinas no banco de dados.
+ *
+ * @param application O contexto da aplicação, fornecido pelo Android.
+ */
 class AddRoutineViewModel(application: Application) : AndroidViewModel(application) {
 
     private var savedMsg = MutableLiveData<Int>()
@@ -51,6 +57,14 @@ class AddRoutineViewModel(application: Application) : AndroidViewModel(applicati
         }
     }
 
+    /**
+     * Adiciona um exercício a uma rotina.
+     * Se o exercício já estiver associado à rotina, a função retorna uma mensagem de falha.
+     * Caso contrário, insere a associação no banco de dados.
+     *
+     * @param r A rotina à qual o exercício será adicionado.
+     * @param e O exercício a ser adicionado.
+     */
     fun addExerciseToRoutine(r: RoutineModel, e: ExerciseModel) {
         val db = AppDatabase.getDatabase(getApplication())
         val routineExerciseDao = db.RoutineDAO()
@@ -73,6 +87,13 @@ class AddRoutineViewModel(application: Application) : AndroidViewModel(applicati
         }
     }
 
+    /**
+     * Remove um exercício de uma rotina.
+     * Caso o exercício não esteja associado à rotina, nenhuma ação é realizada.
+     *
+     * @param r A rotina da qual o exercício será removido.
+     * @param e O exercício a ser removido.
+     */
     fun removeExerciseToRoutine(r: RoutineModel, e: ExerciseModel) {
         val db = AppDatabase.getDatabase(getApplication())
         val routineExerciseDao = db.RoutineDAO()

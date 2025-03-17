@@ -8,6 +8,11 @@ import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseAuth
 import com.lucascosta.gymtracker.data.repository.MotivationalPhrases
 
+/**
+ * ViewModel para a tela inicial (Home) da aplicação.
+ * Responsável por gerenciar os dados relacionados ao usuário (nome, progresso da rotina) e frases motivacionais.
+ * Carrega os dados do usuário autenticado, o progresso da rotina e gerencia as frases motivacionais.
+ */
 class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
     private val _motivationalPhrase = MutableLiveData<String>()
@@ -33,6 +38,9 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
         loadRoutineProgress()
     }
 
+    /**
+     * Carrega o nome do usuário autenticado no Firebase e extrai o primeiro nome.
+     */
     private fun loadUserData() {
         val auth = FirebaseAuth.getInstance()
         val firstName = auth.currentUser?.displayName?.split(" ")?.firstOrNull()
@@ -43,6 +51,13 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
         _motivationalPhrase.value = motivationalPhrases.getMotivationalPhrase()
     }
 
+    /**
+     * Define o progresso da rotina (total de treinos, séries e repetições) e salva no SharedPreferences.
+     *
+     * @param totalWorkouts O número total de treinos realizados.
+     * @param totalSets O número total de séries realizadas.
+     * @param totalReps O número total de repetições realizadas.
+     */
     fun setRoutineProgress(totalWorkouts: Int, totalSets: Int, totalReps: Int) {
         _totalWorkouts.value = totalWorkouts
         _totalSets.value = totalSets
@@ -59,6 +74,9 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    /**
+     * Carrega o progresso da rotina do usuário a partir do SharedPreferences.
+     */
     fun loadRoutineProgress() {
         val sharedPreferences =
             getApplication<Application>().getSharedPreferences("RoutinePrefs", Context.MODE_PRIVATE)

@@ -8,6 +8,12 @@ import kotlinx.parcelize.Parcelize
 
 import java.io.Serializable
 
+/**
+ * Modelo de dados que representa um exercício na aplicação.
+ *
+ * Esta classe é uma entidade do Room Database, armazenada na tabela "Exercise".
+ * Implementa [Serializable] e [Parcelable] para facilitar a transferência de dados entre componentes.
+ */
 @Parcelize
 @Entity(tableName = "Exercise")
 class ExerciseModel : Serializable, Parcelable {

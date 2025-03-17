@@ -8,6 +8,13 @@ import com.lucascosta.gymtracker.databinding.RoutineLineBinding
 import com.lucascosta.gymtracker.ui.listener.OnRoutineListener
 import com.lucascosta.gymtracker.ui.viewHolder.ListRoutineViewHolder
 
+/**
+ * Adapter para exibir uma lista de rotinas de treino com seus respectivos exercícios no [RecyclerView].
+ *
+ * Este adapter é responsável por criar, vincular e gerenciar as visualizações de cada rotina de treino e seus exercícios.
+ * Ele usa o [RoutineLineBinding] para inflar as visualizações e o [ListRoutineViewHolder] para vincular os dados aos elementos da UI.
+ * O listener [OnRoutineListener] é usado para manipular eventos de interação com os itens da lista de rotinas.
+ */
 class ListRoutineAdapter : RecyclerView.Adapter<ListRoutineViewHolder>() {
 
     private var routineList: List<RoutineWithExercises> = listOf()

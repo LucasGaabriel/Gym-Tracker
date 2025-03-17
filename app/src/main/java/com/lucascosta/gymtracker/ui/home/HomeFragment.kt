@@ -11,6 +11,11 @@ import androidx.navigation.fragment.findNavController
 import com.lucascosta.gymtracker.R
 import com.lucascosta.gymtracker.databinding.FragmentHomeBinding
 
+/**
+ * Fragmento da tela inicial (Home) da aplicação.
+ * Exibe uma mensagem de boas-vindas personalizada, uma frase motivacional, o progresso das rotinas de treino
+ * e permite ao usuário navegar para diferentes telas (como adicionar exercício e perfil).
+ */
 class HomeFragment : Fragment(), View.OnClickListener {
 
     private var _binding: FragmentHomeBinding? = null
@@ -63,6 +68,9 @@ class HomeFragment : Fragment(), View.OnClickListener {
         }
     }
 
+    /**
+     * Observa o progresso das rotinas (número de treinos, séries e repetições) e atualiza a UI.
+     */
     fun observeRoutinePrefs() {
         homeViewModel.totalWorkouts.observe(viewLifecycleOwner) { totalWorkouts ->
             binding.workoutsProgress.text =

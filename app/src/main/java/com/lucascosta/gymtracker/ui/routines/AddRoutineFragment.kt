@@ -26,6 +26,11 @@ import com.lucascosta.gymtracker.ui.home.HomeViewModel
 import com.lucascosta.gymtracker.ui.listener.OnExerciseListener
 import com.lucascosta.gymtracker.utils.Constants
 
+/**
+ * Fragmento responsável por adicionar ou editar uma rotina de treino. Ele permite que o usuário
+ * defina o nome, descrição da rotina, adicione ou remova exercícios da rotina, e marque a rotina
+ * como concluída. Também interage com a ViewModel para salvar, atualizar e excluir rotinas.
+ */
 class AddRoutineFragment : Fragment(), View.OnClickListener {
 
     private lateinit var binding: FragmentAddRoutineBinding
@@ -201,11 +206,19 @@ class AddRoutineFragment : Fragment(), View.OnClickListener {
         })
     }
 
+    /**
+     * Preenche os campos do formulário com os dados da rotina existente.
+     *
+     * @param routine A rotina com os dados a serem exibidos.
+     */
     private fun populateFields(routine: RoutineWithExercises) {
         binding.routineName.setText(routine.routine.name)
         binding.description.setText(routine.routine.description)
     }
 
+    /**
+     * Configura o Spinner de exercícios com os nomes dos exercícios disponíveis no banco de dados.
+     */
     private fun setSpinnerExercises() {
         listExercisesVM.getAllExercises()
         val exercisesNames = listExercisesVM.getExerciseList().value.orEmpty().map { it.name }

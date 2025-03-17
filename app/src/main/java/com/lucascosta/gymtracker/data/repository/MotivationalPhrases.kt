@@ -3,6 +3,12 @@ package com.lucascosta.gymtracker.data.repository
 import android.content.Context
 import com.lucascosta.gymtracker.R
 
+/**
+ * Classe responsável por fornecer frases motivacionais para o usuário.
+ *
+ * Esta classe armazena um conjunto de frases motivacionais e oferece um método para retornar uma frase aleatória.
+ * As frases são carregadas a partir dos recursos de strings do aplicativo.
+ */
 class MotivationalPhrases(context: Context) {
     private val phrases: Array<String> = arrayOf(
         context.getString(R.string.phrase_1),
