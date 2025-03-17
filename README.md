@@ -2,6 +2,8 @@
 
 Gym Tracker é um aplicativo desenvolvido para ajudar no gerenciamento de treinos, acompanhamento de progresso e motivação ao longo da jornada de treinamento na academia. Ele foi criado como parte do Projeto Final da disciplina de Desenvolvimento para Dispositivos Móveis (2024/2).
 
+- 🎥 Link do YouTube com demonstração do aplicativo: [Gym Tracker](https://youtube.com/shorts/d0fLO19CyAY?si=cp6gwCihUa7yKt5S)
+
 ## 🚀 Funcionalidades
 
 ### 🏋️‍♂️ Adicionar Exercícios
